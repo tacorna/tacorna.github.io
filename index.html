@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Taco</title>
+
+        <meta name="author" content="Matthew Iyer">
+        <meta name="author" content="Yashar Niknafs">
+        <meta name="author" content="Balaji Pandian">
+
+        <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <script src="js/jquery-2.2.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+
+        <style>
+        body {
+            font-family: sans-serif;
+        }
+
+        .jumbotron {
+            position: relative;
+            padding: 70px 10px 10px 10px;
+            opacity: 1;
+            text-align: center;
+        }
+
+        .jumbotron:before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;        
+            opacity: 0.2;
+        }
+
+        hr {
+            border:none;
+            border-radius:3px;
+            height:5px;
+            margin:auto;
+            background-color:#FFCB05;
+        }
+        </style>
+
+        <script>
+            function clear_nav_bar_select() {
+                var all_sections_in_navbar = $("#active_navbar li");
+                all_sections_in_navbar.each(function(index) {
+                    $(this).attr('class', '');
+                });
+            }
+
+            function clear_all_pages() {
+                $("#about").hide();
+                $("#gettingstarted").hide();
+                $("#code").hide();
+                $("#faq").hide();
+                $("#manual").hide();
+                $("#license").hide();
+            }
+
+            $(document).ready(function() {
+                clear_all_pages();
+                $("#about").show();
+
+                $(".goto").click(function() {
+                    var target = $(this).attr("href");
+                    target = target.substring(1,target.length);
+                    
+                    clear_nav_bar_select();
+                    $("#active_navbar li a[href='#" + target + "']").parent().attr('class', 'active');
+
+                    clear_all_pages();
+                    $("#" + target).show();
+                    return false; 
+                });
+            });
+        </script>
+    </head>
+
+    <body data-spy="scroll" data-target="logo-sidebar">
+        <!-- Header menu -->
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="brand" href="#" onclick='clear_nav_bar_select(); clear_all_pages(); $("#about").show(); return false;'><b>TACO</b></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav" id="active_navbar">
+                            <li class="active"><a href="#about" class="goto">About</a></li>
+                            <li><a href="#gettingstarted" class="goto">Getting Started</a></li>
+                            <li><a href="#code" class="goto">Code</a></li>
+                            <li><a href="#faq" class="goto">FAQ</a></li>
+                            <li><a href="#manual" class="goto">Manual</a></li>
+                            <li><a href="#license" class="goto">License</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Title bar -->
+        <header class="jumbotron subhead" id="overview">
+            <div class="container">
+            <img src="img/taco.png" height="200" style="height:200px;" alt="TACO icon">
+            <h1>TACO: Transcriptome Assemblies Combined Into One</h1>
+            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+        </header>
+
+        <div class="container">
+            <!-- About Section -->
+            <section id="about">
+                <h2 class="page-header">About</h2>
+                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
+
+                <img src="img/new_f1.png" width="50%" alt="Results">
+                <p>Caption for the image goes here -- Lorem ipsum dolor sit amed elit sed do eiusmo tempor</p>
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+                <br>
+
+            </section>
+
+            <!-- Getting Started Section-->
+            <section id="gettingstarted">
+                <h2 class="page-header">Getting Started</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+                <h4>Download Code</h4>
+                <p>
+                    <code>
+                        sudo rm -r -f *
+                    </code>
+                </p>
+                <p>
+                    <code>
+                        sudo git clone everything
+                    </code>
+                </p>
+                <p>
+                    <code>
+                        sudo python install
+                    </code>
+                </p>
+
+                <h4>Run Code</h4>
+
+                <p>Etiam rhoncus, dolor sit amet rutrum maximus, nisi felis mollis nulla, feugiat eleifend mi justo a mi. Vestibulum ac blandit magna. Maecenas at fringilla ipsum, ut rutrum dui. Fusce non tempor nisl, ac posuere lacus. Mauris feugiat lectus nec sem laoreet tempus. Aliquam ac consequat nibh, a ullamcorper elit.</p>
+
+                <pre>$python taco/taco_run.py --chrom-sizes ~/Downloads/hg38.chrom_sizes.txt --gtf-expr-attr FPKM -o ~/Desktop/test/ ~/Desktop/cufflinks/gtf_files_small.txt
+
+2016-02-25 01:28:19,167 - INFO - taco version 0.4.0
+2016-02-25 01:28:19,167 - INFO - ------------------------------------------------------------------------------
+2016-02-25 01:28:19,167 - INFO - verbose logging:                   False                              
+2016-02-25 01:28:19,167 - INFO - output directory:                  /Users/Balaji/Desktop/test/        
+2016-02-25 01:28:19,167 - INFO - chrom sizes file:                  /Users/Balaji/Downloads/hg38.chrom_sizes.txt
+2016-02-25 01:28:19,167 - INFO - reference GTF file:                None                               
+2016-02-25 01:28:19,167 - INFO - guided assembly mode:              False                              
+2016-02-25 01:28:19,168 - INFO - guided strand mode:                False                              
+2016-02-25 01:28:19,168 - INFO - guided ends mode:                  False                              
+2016-02-25 01:28:19,168 - INFO - GTF expression attribute:          FPKM                               
+2016-02-25 01:28:19,168 - INFO - isoform fraction:                  0.0                                
+2016-02-25 01:28:19,168 - INFO - max_isoforms:                      0                                  
+2016-02-25 01:28:19,168 - INFO - change point:                      True                               
+2016-02-25 01:28:19,168 - INFO - change point pvalue:               0.05                               
+2016-02-25 01:28:19,168 - INFO - change point fold change:          0.8                                
+2016-02-25 01:28:19,168 - INFO - change point trim:                 True                               
+2016-02-25 01:28:19,168 - INFO - min fragment length:               200                                
+2016-02-25 01:28:19,168 - INFO - path graph loss threshold:         0.1                                
+2016-02-25 01:28:19,168 - INFO - path frac:                         0.0                                
+2016-02-25 01:28:19,168 - INFO - max paths:                         0                                  
+2016-02-25 01:28:19,169 - INFO - Aggregating GTF files
+2016-02-25 01:28:25,104 - INFO - Sorting GTF
+2016-02-25 01:28:33,097 - INFO - Assembling GTF files
+                </pre>
+
+            </section>
+
+            <section id="code">
+                <h2 class="page-header">Download Code</h2>
+                <h4>Repository</h4>
+                <p>The TACO GitHub repository is located <a href="https://github.com/yniknafs/taco/tree/master/taco">here</a>.
+                </p>
+
+                <h4>Releases</h4>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Version</th>
+                            <th>Date</th>
+                            <th>Changes</th>
+                            <th>Link</th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>0.41.0</td>
+                        <td>3/1/2016</td>
+                        <td>Removed NetworkX Code</td>
+                        <td><a href="https://github.com/yniknafs/taco/tree/master/taco">link</a></td>
+                    </tr>
+                    <tr>
+                        <td>0.40.0</td>
+                        <td>2/25/2016</td>
+                        <td>Moved to native-C aggregate function</td>
+                        <td><a href="https://github.com/yniknafs/taco/tree/master/taco">link</a></td>
+                    </tr>
+                </table>
+               
+            </section>
+
+            <section id="faq">
+                <h2 class="page-header">FAQ</h2>
+                <ul>
+                    <li><b>Q. Sed ac ante augue. Maecenas felis tortor, venenatis ut venenatis ac, vehicula eu eros. Nam sit amet dolor massa.</b></li>
+                    <li>A.  Integer consectetur, nunc id volutpat ultrices</li>
+                    <br>
+                    <li><b>Q. Nunc congue lacus ornare tempor aliquet. Nam venenatis lorem id quam iaculis mollis. Mauris faucibus vestibulum nisl in semper. Cras semper justo nec enim malesuada ornare. Suspendisse potenti. Etiam vitae feugiat mi. Quisque et consequat turpis.</b></li>
+                    <li>A. Yes</li>
+                    <br>
+                    <li><b>Q. Vivamus dictum sodales ante in pellentesque. Vivamus elit mauris, eleifend at est laoreet, sollicitudin porta risus.</b></li>
+                    <li>A. Nam eget sodales lorem, nec scelerisque sem.</li>
+                    <br>
+                    <li><b>Q. Fusce justo elit, pharetra vitae lorem et, maximus vestibulum mi.</b></li>
+                    <li>A. Aliquam erat volutpat. Sed mauris mauris, consequat sed urna eget, gravida consectetur tortor. Cras euismod mauris et ante tempor sollicitudin. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam viverra lectus in sem egestas, a mollis mi pellentesque. In nulla enim, gravida at accumsan eget, efficitur nec ante. Nullam commodo risus vel faucibus pulvinar. Etiam tincidunt efficitur feugiat.</li>
+                    <br>
+                    <li><b>Q. Sed non ligula venenatis, mattis ex nec, bibendum augue.</b></li>
+                    <li>A. Donec vel neque a elit euismod scelerisque. Quisque eget mauris rhoncus, elementum mi quis, vestibulum mauris. Proin bibendum sapien in lectus maximus, et pellentesque velit egestas.</li>
+                </ul>
+            </section>
+
+
+            <section id="manual">
+                <h2 class="page-header">Manual</h2>
+
+                A full API is available at: <a href="https://readthedocs.org/projects/tacoman/">TACO - readthedocs</a>
+            </section>
+
+            <section id="license">
+                <h2 class="page-header">License</h2>
+                <h4>MIT License</h4>
+
+                <pre>Copyright (c) 2015-2016 Matthew Iyer, Yashar Niknafs, Balaji Pandian, Chinnaiyan Research Lab -- University of Michigan
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+                </pre>
+
+            </section>
+
+        </div>
+
+
+    </body>
+
+
+</html>
