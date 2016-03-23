@@ -31,7 +31,7 @@
             top: 0;
             right: 0;
             bottom: 0;
-            left: 0;        
+            left: 0;
             opacity: 0.2;
         }
 
@@ -68,13 +68,13 @@
                 $(".goto").click(function() {
                     var target = $(this).attr("href");
                     target = target.substring(1,target.length);
-                    
+
                     clear_nav_bar_select();
                     $("#active_navbar li a[href='#" + target + "']").parent().attr('class', 'active');
 
                     clear_all_pages();
                     $("#" + target).show();
-                    return false; 
+                    return false;
                 });
             });
         </script>
@@ -108,9 +108,15 @@
         <!-- Title bar -->
         <header class="jumbotron subhead" id="overview">
             <div class="container">
-            <img src="img/taco.png" height="200" style="height:200px;" alt="TACO icon">
+            <img src="img/taco_logo.png" height="200" style="height:200px;" alt="TACO icon">
             <h1>TACO: Transcriptome Assemblies Combined Into One</h1>
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p class="lead">
+
+
+MiTranscriptome is a catalog of human long poly-adenylated RNA transcripts derived from computational analysis of high-throughput RNA sequencing (RNA-Seq) data from over 6,500 samples spanning diverse cancer and tissue types. The complete catalog contains over 91,000 genes, the majority of which are previously uncharacterized long RNAs. Gene expression analysis of the transcripts revealed numerous cancer-specific and lineage-specific RNAs. We aim to enable the scientific community to investigate these intriguing transcripts in further detail.
+
+            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
             </div>
         </header>
 
@@ -159,24 +165,24 @@
 
 2016-02-25 01:28:19,167 - INFO - taco version 0.4.0
 2016-02-25 01:28:19,167 - INFO - ------------------------------------------------------------------------------
-2016-02-25 01:28:19,167 - INFO - verbose logging:                   False                              
-2016-02-25 01:28:19,167 - INFO - output directory:                  /Users/Balaji/Desktop/test/        
+2016-02-25 01:28:19,167 - INFO - verbose logging:                   False
+2016-02-25 01:28:19,167 - INFO - output directory:                  /Users/Balaji/Desktop/test/
 2016-02-25 01:28:19,167 - INFO - chrom sizes file:                  /Users/Balaji/Downloads/hg38.chrom_sizes.txt
-2016-02-25 01:28:19,167 - INFO - reference GTF file:                None                               
-2016-02-25 01:28:19,167 - INFO - guided assembly mode:              False                              
-2016-02-25 01:28:19,168 - INFO - guided strand mode:                False                              
-2016-02-25 01:28:19,168 - INFO - guided ends mode:                  False                              
-2016-02-25 01:28:19,168 - INFO - GTF expression attribute:          FPKM                               
-2016-02-25 01:28:19,168 - INFO - isoform fraction:                  0.0                                
-2016-02-25 01:28:19,168 - INFO - max_isoforms:                      0                                  
-2016-02-25 01:28:19,168 - INFO - change point:                      True                               
-2016-02-25 01:28:19,168 - INFO - change point pvalue:               0.05                               
-2016-02-25 01:28:19,168 - INFO - change point fold change:          0.8                                
-2016-02-25 01:28:19,168 - INFO - change point trim:                 True                               
-2016-02-25 01:28:19,168 - INFO - min fragment length:               200                                
-2016-02-25 01:28:19,168 - INFO - path graph loss threshold:         0.1                                
-2016-02-25 01:28:19,168 - INFO - path frac:                         0.0                                
-2016-02-25 01:28:19,168 - INFO - max paths:                         0                                  
+2016-02-25 01:28:19,167 - INFO - reference GTF file:                None
+2016-02-25 01:28:19,167 - INFO - guided assembly mode:              False
+2016-02-25 01:28:19,168 - INFO - guided strand mode:                False
+2016-02-25 01:28:19,168 - INFO - guided ends mode:                  False
+2016-02-25 01:28:19,168 - INFO - GTF expression attribute:          FPKM
+2016-02-25 01:28:19,168 - INFO - isoform fraction:                  0.0
+2016-02-25 01:28:19,168 - INFO - max_isoforms:                      0
+2016-02-25 01:28:19,168 - INFO - change point:                      True
+2016-02-25 01:28:19,168 - INFO - change point pvalue:               0.05
+2016-02-25 01:28:19,168 - INFO - change point fold change:          0.8
+2016-02-25 01:28:19,168 - INFO - change point trim:                 True
+2016-02-25 01:28:19,168 - INFO - min fragment length:               200
+2016-02-25 01:28:19,168 - INFO - path graph loss threshold:         0.1
+2016-02-25 01:28:19,168 - INFO - path frac:                         0.0
+2016-02-25 01:28:19,168 - INFO - max paths:                         0
 2016-02-25 01:28:19,169 - INFO - Aggregating GTF files
 2016-02-25 01:28:25,104 - INFO - Sorting GTF
 2016-02-25 01:28:33,097 - INFO - Assembling GTF files
@@ -220,7 +226,7 @@
                         <td><a href="https://github.com/yniknafs/taco/tree/master/taco">link</a></td>
                     </tr>
                 </table>
-               
+
             </section>
 
             <section id="faq">
