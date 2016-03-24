@@ -1,153 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Taco</title>
+  <head>
+    <meta charset="utf-8">
+    <title>Taco</title>
 
-        <meta name="author" content="Matthew Iyer">
-        <meta name="author" content="Yashar Niknafs">
-        <meta name="author" content="Balaji Pandian">
+    <meta name="author" content="Matthew Iyer">
+    <meta name="author" content="Yashar Niknafs">
+    <meta name="author" content="Balaji Pandian">
 
-        <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-        <script src="js/jquery-2.2.1.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
 
-        <style>
-        body {
-            padding-top: 70px;
-            font-family: sans-serif;
-        }
+    <!-- Custom CSS -->
+    <style>
+    body {
+        padding-top: 70px;
+        font-family: sans-serif;
+    }
 
-        .jumbotron {
-            position: relative;
-            padding: 70px 10px 10px 10px;
-            opacity: 1;
-            text-align: center;
-        }
+    .jumbotron {
+        position: relative;
+        padding: 70px 10px 10px 10px;
+        opacity: 1;
+        text-align: center;
+    }
 
-        .jumbotron:before {
-            content: '';
-            display: block;
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            opacity: 0.2;
-        }
+    .jumbotron:before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        opacity: 0.2;
+    }
 
-        hr {
-            border:none;
-            border-radius:3px;
-            height:5px;
-            margin:auto;
-            background-color:#FFCB05;
-        }
-        </style>
+    hr {
+        border:none;
+        border-radius:3px;
+        height:5px;
+        margin:auto;
+        background-color:#FFCB05;
+    }
+    </style>
 
-        <script>
-            function clear_nav_bar_select() {
-                var all_sections_in_navbar = $("#active_navbar li");
-                all_sections_in_navbar.each(function(index) {
-                    $(this).attr('class', '');
-                });
-            }
+    <script src="js/jquery-2.2.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
-            function clear_all_pages() {
-                $("#overview").hide();
-                $("#about").hide();
-                $("#gettingstarted").hide();
-                $("#code").hide();
-                $("#faq").hide();
-                $("#manual").hide();
-                $("#license").hide();
-            }
-
-            $(document).ready(function() {
-                clear_all_pages();
-                $("#overview").show();
-
-                $(".goto").click(function() {
-                    var target = $(this).attr("href");
-                    target = target.substring(1,target.length);
-
-                    clear_nav_bar_select();
-                    $("#active_navbar li a[href='#" + target + "']").parent().attr('class', 'active');
-
-                    clear_all_pages();
-                    $("#" + target).show();
-                    return false;
-                });
+    <script>
+        function clear_nav_bar_select() {
+            var all_sections_in_navbar = $("#active_navbar li");
+            all_sections_in_navbar.each(function(index) {
+                $(this).attr('class', '');
             });
-        </script>
-    </head>
+        }
 
-    <body data-spy="scroll" data-target="logo-sidebar">
-        <!-- Header menu -->
-        <div class="navbar navbar-default navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="brand" href="#" onclick='clear_nav_bar_select(); clear_all_pages(); $("#overview").show(); return false;'><b>TACO</b></a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav" id="active_navbar">
-                            <li><a href="#about" class="goto">About</a></li>
-                            <li><a href="#gettingstarted" class="goto">Getting Started</a></li>
-                            <li><a href="#code" class="goto">Code</a></li>
-                            <li><a href="#faq" class="goto">FAQ</a></li>
-                            <li><a href="#manual" class="goto">Manual</a></li>
-                            <li><a href="#license" class="goto">License</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        function clear_all_pages() {
+            $("#overview").hide();
+            $("#about").hide();
+            $("#gettingstarted").hide();
+            $("#code").hide();
+            $("#faq").hide();
+            $("#manual").hide();
+            $("#license").hide();
+        }
+
+        $(document).ready(function() {
+            clear_all_pages();
+            $("#overview").show();
+
+            $(".goto").click(function() {
+                var target = $(this).attr("href");
+                target = target.substring(1,target.length);
+
+                clear_nav_bar_select();
+                $("#active_navbar li a[href='#" + target + "']").parent().attr('class', 'active');
+
+                clear_all_pages();
+                $("#" + target).show();
+                return false;
+            });
+        });
+    </script>
+  </head>
+
+  <body data-spy="scroll" data-target="logo-sidebar">
+
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#" onclick='clear_nav_bar_select(); clear_all_pages(); $("#overview").show(); return false;'>TACO</a>
         </div>
 
-        <!-- Title bar -->
-        <header class="jumbotron subhead" id="overview">
-            <div class="container">
-            <img src="img/taco_logo.png" height="200" style="height:200px;" alt="TACO icon">
-            <h2>TACO: Transcriptome meta-assembly for RNA-Seq</h2>
-            <p class="lead">
-            Transcriptome assemblers reconstruct full-length transcripts from
-            the short sequence fragments generated by RNA-Seq. Large consortia
-            such as <a href="http://cancergenome.nih.gov">TCGA</a>,
-            <a href="http://www.gtexportal.org">GTex</a>,
-            <a href="https://www.encodeproject.org">ENCODE</a>, the
-            Cancer Cell Line Encyclopedia (CCLE), and many others have
-            performed RNA-Seq on thousands of human tissues and cell lines,
-            providing an unparalleled resource for investigating
-            transcriptional diversity and complexity. Towards this end, we
-            present Transcriptome Assemblies Combined into One (TACO), an
-            algorithm that reconstructs a consensus transcriptome from a large
-            collection of individual assemblies. By employing
-            rigorous change point detection and a novel dynamic programming
-            approach TACO vastly outperforms meta-assembly software tools such
-            as <a href="http://cole-trapnell-lab.github.io/cufflinks/cuffmerge">Cuffmerge</a>
-            and <a href="https://ccb.jhu.edu/software/stringtie">Stringtie merge</a>.
-            See the results of our comparison analysis <a href="#about">here</a>.
-            </p>
-            </div>
-        </header>
+        <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="#about" class="goto">About</a></li>
+            <li><a href="#gettingstarted" class="goto">Getting Started</a></li>
+            <li><a href="#code" class="goto">Code</a></li>
+            <li><a href="#faq" class="goto">FAQ</a></li>
+            <li><a href="#manual" class="goto">Manual</a></li>
+            <li><a href="#license" class="goto">License</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
+    <!-- Title bar -->
+    <header class="jumbotron subhead" id="overview">
+      <div class="container">
+        <img src="img/taco_logo.png" height="200" style="height:200px;" alt="TACO icon">
+        <h2>TACO: Transcriptome meta-assembly for RNA-Seq</h2>
+        <p class="lead">
+        Transcriptome assemblers reconstruct full-length transcripts from
+        the short sequence fragments generated by RNA-Seq. Large consortia
+        such as <a href="http://cancergenome.nih.gov">TCGA</a>,
+        <a href="http://www.gtexportal.org">GTex</a>,
+        <a href="https://www.encodeproject.org">ENCODE</a>, the
+        Cancer Cell Line Encyclopedia (CCLE), and many others have
+        performed RNA-Seq on thousands of human tissues and cell lines,
+        providing an unparalleled resource for investigating
+        transcriptional diversity and complexity. Towards this end, we
+        present Transcriptome Assemblies Combined into One (TACO), an
+        algorithm that reconstructs a consensus transcriptome from a large
+        collection of individual assemblies. TACO employs change point
+        detection to break apart complex loci and correctly delineate
+        transcript start and end sites, and a dynamic programming approach
+        to assemble transcripts from a network of splicing patterns.
+        TACO vastly outperforms meta-assembly software tools such
+        as <a href="http://cole-trapnell-lab.github.io/cufflinks/cuffmerge">Cuffmerge</a>
+        and <a href="https://ccb.jhu.edu/software/stringtie">Stringtie merge</a>.
+        See the results of our comparison analysis <a href="#about">here</a>.
+        </p>
+      </div>
+    </header>
+
+    <div class="container">
+      <!-- About Section -->
+      <section id="about">
+        <h2 class="page-header">Methods</h2>
         <div class="container">
-            <!-- About Section -->
-            <section id="about">
-                <h2 class="page-header">About</h2>
-                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
+          <div class="row">
+            <div class="col-xs-8">
+              <img class="img-responsive center-block" src="img/figure_1_schematic.png" width="100%" alt="Methods">
+            </div>
+            <div class="col-xs-4">
+              <p class="lead">Transcriptome meta-assembly protocol</p>
+              <ol>
+                <li>Sequence reads from each dataset are aligned to the
+                reference genome using
+                <a href="https://github.com/alexdobin/STAR">STAR</a>,
+                <a href="http://ccb.jhu.edu/software/hisat2">HISAT2</a>,
+                or another RNA-Seq aligner</li>
+                <li>Read alignments (SAM/BAM/CRAM format) from each dataset
+                are assembled into transfrags using
+                <a href="http://cole-trapnell-lab.github.io/cufflinks">Cufflinks</a>,
+                <a href="https://ccb.jhu.edu/software/stringtie">StringTie</a>,
+                or another <em>ab initio</em> transcriptome assembly tool.</li>
+                <li>Meta-assembly is performed on the collection of
+                <em>ab initio</em> assemblies (GTF format) by
+                <strong>TACO</strong>, resulting in a consensus merged
+                transcriptome</li>
+                <li>Downstream analysis of gene expression, conservation,
+                variation, and functionality can be performed</li>
+              </ol>
+            </div>
+          </div>
+        </div>
 
-                <img src="img/new_f1.png" width="50%" alt="Results">
-                <p>Caption for the image goes here -- Lorem ipsum dolor sit amed elit sed do eiusmo tempor</p>
+        <h2 class="page-header">Results</h2>
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-8">
+              <img class="img-responsive center-block" src="img/figure_2a.png" width="100%" alt="Methods">
+            </div>
+            <div class="col-xs-4">
+              <p class="lead">Varying the number of input assemblies</p>
+              Performance metrics for TACO, Cuffmerge, and
+              StringTie when merging different numbers of input assemblies. Recall
+              (i.e., sensitivity), precision and the F-measure for all three
+              tools were assessed for splicing patterns, splice junctions,
+              and bases. Twenty batches were randomly selected at each
+              number of assemblies. Points represent the mean statistic
+              across the 20 runs, error bars represent the 95% confidence
+              interval.
+            </div>
+          </div>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <br/><br/>
 
-                <br>
+          <div class="row">
+            <div class="col-xs-8">
+              <img class="img-responsive center-block" src="img/figure_2b.png" width="100%" alt="Methods">
+            </div>
+            <div class="col-xs-4">
+              <p class="lead">Varying isoform fraction cutoff</p>
+              <p>The parameter <code>--isoform-frac FRAC</code> configures
+              TACO to only report isoforms with abundance ratio more than
+              <code>FRAC</code> of the most abundant transcript in the locus</p>
+              <p>The precision-recall (PR) plots depict the performance for the
+              three merging tools at 50 different isoform fraction cutoffs ranging
+              from 0.001-0.999. Statistics describe the merger of the 55 breast
+              cancer cell lines in the CCLE.</p>
+            </div>
+          </div>
 
-            </section>
+          <br/><br/>
+
+          <div class="row">
+            <div class="col-xs-8">
+              <img class="img-responsive center-block" src="img/figure_2c.png" width="100%" alt="Results">
+            </div>
+            <div class="col-xs-4">
+              <p class="lead">Performance for highly expressed transcripts</p>
+              <p>The precision-recall (PR) plots depict the performance for the
+              three merging tools across subsets of the top 500, 1k, 1.5k,
+              2k, 3k, 5k, 7k, 10k, 12k, 15k, 18k, 20k, 22k, 25k, 27k, and 30k
+              highest expressed transcripts in the merger of 55 breast cancer
+              cell lines from the CCLE</p>
+            </div>
+          </div>
+
+          <br/><br/>
+
+          <div class="row">
+            <div class="col-xs-8">
+              <img class="img-responsive center-block" src="img/figure_2d.png" alt="Results">
+            </div>
+            <div class="col-xs-4">
+              <p class="lead">Fraction of read-through transcripts</p>
+              <p>Scatterplot depicting the fraction of read-through
+              genes produced in the meta-assembly from the three merge
+              tools. Gene designated as being a read-through if it contains
+              at least one transcript isoform bearing exonic overlap with
+              two separate protein-coding genes on the same strand. Fraction
+              of read-throughs was determined for assemblies at 50 different
+              isoform fraction cutoffs ranging from 0.001-0.999.</p>
+            </div>
+          </div>
+        </div>
+
+      </section>
 
             <!-- Getting Started Section-->
             <section id="gettingstarted">
