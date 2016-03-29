@@ -291,8 +291,12 @@ $ python setup.py install --prefix INSTALL_DIR</pre>
         </p>
 
         <h4>Setup your Python environment</h4>
-        <p>The TACO program will be installed to <code>INSTALL_DIR/bin/taco_run.py</code>.
-        Associate modules will be available at <code>INSTALL_DIR/lib/python2.7/site-packages</code>
+        <p>The TACO program will be installed to <code>INSTALL_DIR>.
+        The main TACO python script is located at <code>INSTALL_DIR/bin/taco_run.py</code>.
+        To run, TACO needs to know about the location of its python modules, located
+        at <code>INSTALL_DIR/lib/python2.7/site-packages</code>. You may need to
+        configure your Python environment so that python can import TACO modules
+        during runtime.
         </p>
         <p>If you installed TACO into a non-standard directory, your
         PYTHONPATH environment variable must include the TACO package
@@ -414,7 +418,6 @@ $ python setup.py install --prefix INSTALL_DIR</pre>
             <section id="license">
                 <h2 class="page-header">License</h2>
                 <h4>MIT License</h4>
-
                 <pre>Copyright (c) 2015-2016 Matthew Iyer, Yashar Niknafs, Balaji Pandian, Chinnaiyan Research Lab -- University of Michigan
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
