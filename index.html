@@ -270,7 +270,7 @@
         <p>
         We developed and tested TACO on Mac OSX and Linux using the
         <a href="https://www.enthought.com/products/canopy">Enthought Canopy</a> Python Distribution,
-        which includes all of the above packages
+        which includes all of the above packages.
         </p>
 
         <h3>Download Software</h3>
@@ -313,7 +313,7 @@ $ python setup.py install --prefix INSTALL_DIR</pre>
         </ul>
 
         <p>In the directory where you placed the two downloaded files, type:</p>
-        <pre>python INSTALL_DIR/bin/taco_run.py --gtf-expr-attr expr taco_test_files.txt</pre>
+        <pre>INSTALL_DIR/bin/taco_run.py --gtf-expr-attr expr taco_test_files.txt</pre>
 
         <p><em>Note:
         Our sample dataset has already been processed by TACO, which converts
@@ -461,7 +461,177 @@ $ python setup.py install --prefix INSTALL_DIR</pre>
           import output files are:
         </p>
 
+        <h4><strong>Transcriptome assembly: <tt>assembly.gtf</tt></strong></h4>
+        <p>This GTF file contains TACO's assembled isoforms. The first 7
+          columns are standard GTF, and the last column contains attributes,
+          some of which are also standardized (“gene_id”, and “transcript_id”).
+          There one GTF record per row, and each record represents either a
+          transcript or an exon within a transcript. The columns are defined as
+          follows:</p>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th style="text-align: center">Column number</th>
+              <th>Column name</th>
+              <th>Example</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="text-align: center">1</td>
+              <td>seqname</td>
+              <td>chrX</td>
+              <td>Chromosome or contig name</td>
+            </tr>
+            <tr>
+              <td style="text-align: center">2</td>
+              <td>source</td>
+              <td>taco</td>
+              <td>The name of the program that generated this file (always taco)</td>
+            </tr>
+            <tr>
+              <td style="text-align: center">3</td>
+              <td>feature</td>
+              <td>exon</td>
+              <td>The type of record (always either “transcript” or “exon”.</td>
+            </tr>
+            <tr>
+              <td style="text-align: center">4</td>
+              <td>start</td>
+              <td>77696957</td>
+              <td>The leftmost coordinate of this record (where 1 is the leftmost possible coordinate)</td>
+            </tr>
+            <tr>
+              <td style="text-align: center">5</td>
+              <td>end</td>
+              <td>77712009</td>
+              <td>The rightmost coordinate of this record, inclusive.</td>
+            </tr>
+            <tr>
+              <td style="text-align: center">6</td>
+              <td>score</td>
+              <td>77712009</td>
+              <td>The most abundant isoform for each gene is assigned a score
+                of 1000. Minor isoforms are scored by the ratio
+                (minor FPKM/major FPKM)</td>
+            </tr>
+            <tr>
+              <td style="text-align: center">7</td>
+              <td>strand</td>
+              <td>+</td>
+              <td>TACO's guess for which strand the isoform came from.
+                Always one of “+”, “-“, “.”</td>
+            </tr>
+            <tr>
+              <td style="text-align: center">7</td>
+              <td>frame</td>
+              <td>.</td>
+              <td>TACO does not predict where the start and stop
+                codons (if any) are located within each transcript,
+                so this field is not used.</td>
+            </tr>
+            <tr>
+              <td style="text-align: center">8</td>
+              <td>attributes</td>
+              <td>…</td>
+              <td>See below.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>Each GTF record is decorated with the following attributes:</p>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th style="text-align: left">Attribute</th>
+              <th>Example</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="text-align: left">gene_id</td>
+              <td>G7</td>
+              <td>TACO gene id</td>
+            </tr>
+            <tr>
+              <td style="text-align: left">transcript_id</td>
+              <td>TU56</td>
+              <td>TACO transcript id</td>
+            </tr>
+            <tr>
+              <td style="text-align: left">locus_id</td>
+              <td>L1</td>
+              <td>TACO locus id</td>
+            </tr>
+            <tr>
+              <td style="text-align: left">tss_id</td>
+              <td>TSS31</td>
+              <td>TACO transcription start site id</td>
+            </tr>
+            <tr>
+              <td style="text-align: left">expr</td>
+              <td>2.441</td>
+              <td>Isoform-level abundance. The units correspond to the
+                expression units of the input transfrags (usually FPKM or TPM)
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align: left">rel_frac</td>
+              <td>0.7647</td>
+              <td>Relative abundance of isoform compared to the major isoform
+                in the gene. The most abundant isoform for each gene is
+                assigned a rel_frac of 1.0. Minor isoforms are scored
+                by the ratio (minor expr/major expr)
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align: left">abs_frac</td>
+              <td>0.7647</td>
+              <td>Relative abundance of isoform compared to the total
+                expression of all isoforms in the gene. Isoforms are scored by
+                the ratio (expr / sum(expr(x) for each isoform x)).
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4><strong>Transcriptome assembly: <tt>assembly.bed</tt></strong></h4>
+        <p>This BED file contains TACO's assembled isoforms. Please refer to
+          the <a href="https://genome.ucsc.edu/FAQ/FAQformat.html#format1">
+          UCSC genome browser's detailed description of the BED
+          format</a>. The <code>name</code> column (Column 4) contains
+          a string of the format <code>gene_id|transcript_id(expr)</code>,
+          e.g. <code>G7|TU56(2.77)</code>.
+        </p>
+
         <br/>
+        <h4><strong>Transfrag coverage profiles:
+          <tt>expr.pos.bedgraph</tt>,
+          <tt>expr.neg.bedgraph</tt>,
+          <tt>expr.none.bedgraph</tt></strong></h4>
+        <p>TACO outputs 3 bedGraph files with the coverage profile of the
+          input transfrags on the forward, reverse, and unknown/unspecified
+          strands. Please refer to the
+          <a href="https://genome.ucsc.edu/goldenPath/help/bedgraph.html">
+          UCSC genome browser's detailed description of the bedGraph
+          format</a>. These files can be converted to
+          <a href="https://genome.ucsc.edu/goldenPath/help/bigWig.html">bigWig format</a>
+          using the free conversion tool <code>bedGraphToBigWig</code> for
+          viewing on genome browsers such as IGV or UCSC.
+        </p>
+
+        <br/>
+        <h4><strong>Transfrag splice junction profiles:
+          <tt>splice_junctions.bed</tt></strong></h4>
+        <p>A <a href="http://genome.ucsc.edu/FAQ/FAQformat.html#format1">UCSC
+        BED</a> track of junctions reported by TACO.  Each junction consists
+        of two connected BED blocks.  The score is the sum of the expression
+        values of transfrags supporting the junction
+        </p>
 
       </section>
 
