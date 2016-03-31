@@ -47,6 +47,7 @@
           $("#faq").hide();
           $("#manual").hide();
           $("#license").hide();
+          $("#datasets").hide();
       }
 
       function change_page_to(target) {
@@ -90,6 +91,7 @@
             <li><a href="#code" class="goto" id="code_button">Code</a></li>
             <li><a href="#manual" class="goto" id="manual_button">Manual</a></li>
             <li><a href="#faq" class="goto" id="faq_button">FAQ</a></li>
+            <li><a href="#datasets" class="goto" id="datasets_button">Datasets</a></li>
             <li><a href="#license" class="goto" id="license_button">License</a></li>
           </ul>
         </div>
@@ -667,6 +669,22 @@ $ python setup.py install --prefix INSTALL_DIR</pre>
 
       </section>
 
+      <section id="datasets">
+        <h2 class="page-header">Download</h2>
+        <ul>
+          <li>!!!Place information about the sample here. CAUTION: DOWNLOAD IS 285MB. FILE UNTARS to 4GB<a href="http://mctp-taco.path.med.umich.edu/ccle_brca_cufflinks.tar.gz">ccle_brca_cufflinks.tar.gz</a></li>
+          <li>!!!Place information about the sample here. CAUTION: DOWNLOAD IS 4.4GB. FILE UNTARS to 80GB <a href="http://mctp-taco.path.med.umich.edu/ccle_cufflinks.tar.gz">ccle_cufflinks.tar.gz</a></li>
+        </ul>
+
+        <h4>Run</h4>
+        <p>To run TACO on this code:</p>
+        First, untar the downloaded file in the desired directory.
+        <pre>tar -zxvf ccle_cufflinks.tar.gz</pre>
+        Second, change your directory to the uncompressed directory.
+        <pre>cd ccle_cufflinks</pre>
+        Third, run TACO with the following command.
+        <pre>python INSTALL_DIR/bin/taco_run.py --gtf-expr-attr FPKM list_of_files.txt</pre>
+      </section>
 
       <section id="license">
         <h2 class="page-header">License</h2>
