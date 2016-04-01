@@ -653,7 +653,6 @@ $ python setup.py install --prefix INSTALL_DIR</pre>
         workstation in about 2 hours and 30 minutes.
         </p>
 
-
         <br/><p class="lead"><strong>Q.</strong>
         Why do I receive a WARNING message that my <code>sort</code>
         command does not support the <code>--parallel</code> flag?</p>
@@ -665,7 +664,31 @@ $ python setup.py install --prefix INSTALL_DIR</pre>
         portion of total runtime. Newer versions of GNU coreutils provide a
         parallelized version of sort. TACO checks to see if sort can be
         parallelized and defaults to single-threaded sort if this is not
-        supported.</p>
+        supported.
+        </p>
+
+        <br/><p class="lead"><strong>Q.</strong>
+        Why do I receive an <code>ImportError</code> exception when I run TACO?
+        For example, I get an error that looks like this:
+        <pre>
+Traceback (most recent call last):
+  File "taco/taco_run.py", line 11, in <module>
+    from taco.lib.run import Run
+ImportError: No module named taco.lib.run
+</pre>
+        </p>
+
+        <p><strong>A.</strong>
+        TACO imports numerous Python modules during runtime.
+        When Python script tries to load other modules, the interpreter
+        searches a number of default directories, and emits an
+        <code>ImportError</code> if a module cannot be found. Since most users
+        choose to install TACO into a custom user directory, your <tt>PYTHONPATH</tt>
+        environment variable must be set up correctly for this to work. If
+        you are using the <tt>bash</tt> command line shell, you can set up
+        you <tt>PYTHONPATH</tt> as follows:
+        <pre>$ export PYTHONPATH=/path/to/taco/lib/python2.7/site-packages:$PYTHONPATH</pre>
+        </p>
 
       </section>
 
