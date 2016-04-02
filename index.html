@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
 
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="css/datatables.min.css">
+
     <!-- Custom CSS -->
     <style>
       body {
@@ -30,6 +33,7 @@
 
     <script src="js/jquery-2.2.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/datatables.min.js"></script>
 
     <script>
       function clear_nav_bar_select() {
@@ -65,6 +69,23 @@
               target = target.substring(1,target.length);
               change_page_to(target);
               return false;
+          });
+
+          // Load datasets from json file using the DataTables library
+          $("#ccle_files_table").DataTable({
+              "ajax": 'data/samples.json',
+              "columns" : [
+                  {"title": "Aliquot ID"},
+                  {"title": "TCGA Legacy ID"},
+                  {"title": "Disease Abbreviation"},
+                  {"title": "Disease"},
+                  {
+                      "title": "Download",
+                      "render" : function(obj) {
+                        return "<a href=http://mctp-taco.path.med.umich.edu/" + obj + ".gtf.gz>" + obj + "</a>";
+                      }
+                  }
+              ]
           });
       });
     </script>
@@ -732,6 +753,9 @@ ImportError: No module named taco.lib.run
               <td>4.4GB (80GB)</td>
               <td><a href="http://mctp-taco.path.med.umich.edu/ccle_cufflinks.tar.gz">ccle_cufflinks.tar.gz</a></td>
           </tr>
+        </table>
+
+        <table id="ccle_files_table" class="display" cellspacing="0" width="100%">
         </table>
 
         <h3>Run instructions</h3>
