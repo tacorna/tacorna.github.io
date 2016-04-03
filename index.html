@@ -80,9 +80,9 @@
                   {"title": "Disease Abbreviation"},
                   {"title": "Disease"},
                   {
-                      "title": "Download",
+                      "title": "Download GTF",
                       "render" : function(obj) {
-                        return "<a href=http://mctp-taco.path.med.umich.edu/" + obj + ".gtf.gz>" + obj + "</a>";
+                        return "<a href=http://mctp-taco.path.med.umich.edu/" + obj + ".gtf.gz>" + obj + ".gtf.gz</a>";
                       }
                   }
               ]
@@ -727,11 +727,17 @@ ImportError: No module named taco.lib.run
         <h2 class="page-header">Transcriptome Assemblies</h2>
         <p>
           Cufflinks <em>ab initio</em> assemblies of the RNA-Seq datasets from
-          the Cancer Cell Line Encyclopedia (CCLE) are provided for users
-          interested in studying meta-assembly using larger datasets. RNA-Seq
-          datasets were aligned with STAR prior to running Cufflinks.
+          the Cancer Cell Line Encyclopedia (CCLE) are provided for user
+          download. RNA-Seq data were aligned using
+          <a href="https://github.com/alexdobin/STAR">STAR</a>
+          prior to running Cufflinks.
         </p>
+        <ul>
+          <li><a href="#datasets-batches">Batches</a></li>
+          <li><a href="#datasets-individual">Individual assemblies</a></li>
+        </ul>
 
+        <h3 id="#datasets-batches" class="page-header">Batches</h3>
         <table class="table">
           <thead>
             <tr>
@@ -755,10 +761,7 @@ ImportError: No module named taco.lib.run
           </tr>
         </table>
 
-        <table id="ccle_files_table" class="display" cellspacing="0" width="100%">
-        </table>
-
-        <h3>Run instructions</h3>
+        <h4>Run instructions</h4>
         <p>
           First, untar/uncompress the downloaded dataset file:
         </p>
@@ -776,6 +779,11 @@ ImportError: No module named taco.lib.run
           Run TACO with the following command:
         </p>
         <pre>INSTALL_DIR/bin/taco_run.py --gtf-expr-attr FPKM -o my_output_dir list_of_files.txt</pre>
+
+        <h3 id="#datasets-individual" class="page-header">Individual assemblies</h3>
+        <table id="ccle_files_table" class="display" cellspacing="0" width="100%">
+        </table>
+
       </section>
 
       <section id="license">
