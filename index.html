@@ -48,6 +48,7 @@
           $("#about").hide();
           $("#gettingstarted").hide();
           $("#code").hide();
+          $("#build").hide();
           $("#faq").hide();
           $("#manual").hide();
           $("#license").hide();
@@ -260,55 +261,40 @@
       <section id="gettingstarted">
         <h1 class="page-header">Getting Started</h1>
         <ul>
-          <li><a href="#gettingstarted-install">Install</a></li>
+          <li><a href="#gettingstarted-download">Download</a></li>
           <li><a href="#gettingstarted-test">Test the installation</a></li>
         </ul>
 
-        <h2 id="gettingstarted-install">Installation</h2>
+        <h3 id="gettingstarted-download">Download</h3>
 
-        <h3>Requirements <small>for building TACO on your system</small></h3>
-        <p>TACO is written in Python with C extensions for performance
-        critical code. Required packages include:</p>
-        <ul>
-          <li><a href="http://www.python.org">Python 2.7</a></li>
-          <li><a href="http://www.numpy.org">Numpy 1.9.2+</a></li>
-          <li><a href="http://cython.org">Cython 0.23.4+</a></li>
-        </ul>
+        <h4>Download the latest TACO release</h4>
         <p>
-        We developed and tested TACO on Mac OSX and Linux using the
-        <a href="https://www.enthought.com/products/canopy">Enthought Canopy</a> Python Distribution,
-        which includes all of the above packages.
-        </p>
-
-        <h3>Download Software</h3>
-        <p>Download the latest TACO release
-          <a href="#code" class="goto" id="code_button">here</a>
-        </p>
-
-        <h3>Build</h3>
-        <p>
-          Unpack the release file (<code>.tar.gz</code> or <code>.zip</code>)
-          into source directory <code>taco-X.Y.Z</code>. For example:
-          <pre>$ tar -zxvf taco-X.Y.Z.tar.gz</pre>
-        </p>
-        <p>
-          Compile and install the software into directory <code>INSTALL_DIR</code>
-          <pre>$ cd SOURCE_DIR
-$ python setup.py install --prefix INSTALL_DIR</pre>
-          The TACO program will be installed to <code>INSTALL_DIR</code>
-        </p>
-
-        <h3>Setup your Python environment</h3>
-        <p>
-        The main TACO python script is located at <code>INSTALL_DIR/bin/taco_run.py</code>.
-        To run, TACO needs to know about the location of its python modules, located
-        at <code>INSTALL_DIR/lib/python2.7/site-packages</code>. You may need to
-        configure your Python environment so that python can import TACO modules
-        during runtime.
-        </p>
-        <p>If you installed TACO into a non-standard directory, your
-        PYTHONPATH environment variable can be configured as follows (bash shell):</p>
-        <pre>$ export PYTHONPATH=INSTALL_DIR/lib/python2.7/site-packages:$PYTHONPATH</pre>
+          <table class="table">
+          <thead>
+              <tr>
+                  <th>OS</th>
+                  <th>Version</th>
+                  <th>Date</th>
+                  <th>Binary Link</th>
+              </tr>
+          </thead>
+          <tr>
+              <td>Mac OSX</td>
+              <td>v0.5.0</td>
+              <td>4/28/2016</td>
+              <td>
+                <a href="https://github.com/tacorna/taco/releases/download/v0.5.0/taco_run_mac">taco_run_mac</a>
+              </td>
+          </tr>
+          <tr>
+              <td>Linux</td>
+              <td>v0.5.0</td>
+              <td>4/28/2016</td>
+              <td>
+                <a href="https://github.com/tacorna/taco/releases/download/v0.5.0/taco_run_linux">taco_run_linux</a>
+              </td>
+          </tr>
+        </table>
         </p>
 
         <h3 id="gettingstarted-test">Testing the installation</h3>
@@ -319,8 +305,8 @@ $ python setup.py install --prefix INSTALL_DIR</pre>
           <li><a href="https://raw.githubusercontent.com/tacorna/taco/master/taco_test_files.txt" download="taco_test_files.txt">taco_test_files.txt</a></li>
         </ul>
 
-        <p>In the directory where you placed the two downloaded files, type:</p>
-        <pre>INSTALL_DIR/bin/taco_run.py --gtf-expr-attr expr taco_test_files.txt</pre>
+        <p>In the directory where you placed the two downloaded files and the binary file, type:</p>
+        <pre>./taco_run_{mac,linux} --gtf-expr-attr expr taco_test_files.txt</pre>
 
         <p><em>Note:
         Our sample dataset has already been processed by TACO, which converts
@@ -331,7 +317,7 @@ $ python setup.py install --prefix INSTALL_DIR</pre>
 
         <p>You should see the following output:</p>
         <pre>
-2016-03-30 14:54:02,097 pid=89792 INFO - taco version 0.4.3
+2016-03-30 14:54:02,097 pid=89792 INFO - taco version 0.5.0
 2016-03-30 14:54:02,097 pid=89792 INFO - ------------------------------------------------------------------------------
 2016-03-30 14:54:02,097 pid=89792 INFO - verbose logging:                   False
 2016-03-30 14:54:02,097 pid=89792 INFO - num processes:                     1
@@ -378,13 +364,13 @@ $ python setup.py install --prefix INSTALL_DIR</pre>
               </tr>
           </thead>
           <tr>
-              <td>v0.4.5</td>
-              <td>4/14/2016</td>
+              <td>v0.5.0</td>
+              <td>4/28/2016</td>
               <td>Version used for manuscript submission</td>
               <td>
                 Download
-                <a href="https://github.com/tacorna/taco/archive/v0.4.5.tar.gz">.tar.gz</a>
-                <a href="https://github.com/tacorna/taco/archive/v0.4.5.zip">.zip</a>
+                <a href="https://github.com/tacorna/taco/archive/v0.5.0.tar.gz">.tar.gz</a>
+                <a href="https://github.com/tacorna/taco/archive/v0.5.0.zip">.zip</a>
               </td>
           </tr>
         </table>
@@ -392,6 +378,39 @@ $ python setup.py install --prefix INSTALL_DIR</pre>
         <h4>Source Code</h4>
         <p>The TACO GitHub repository is located
         <a href="https://github.com/tacorna/taco">here</a>.
+        </p>
+
+        <h4>Build Code</h4>
+        <p>More information on the build procedure is located <a href="#build" class="goto" id="build_button">here</a>.</p>
+      </section>
+
+      <section id="build">
+        <h3>Build</h3>
+        <h4>Requirements for building TACO on your system</h4>
+        <p>
+            TACO is written in Python with C extensions for performance critical code. Required Packaged include:
+        </p>
+        <ul>
+          <li><a href="http://www.python.org">Python 2.7</a></li>
+          <li><a href="http://www.numpy.org">Numpy 1.9.2+</a></li>
+          <li><a href="http://cython.org">Cython 0.23.4+</a></li>
+          <li><a href="http://www.pyinstaller.org/">PyInstaller 3.0+</a></li>
+        </ul>
+        <h4>Building TACO on your system</h4>
+        <p>
+            Unpack the release file (<code>.tar.gz</code> or <code>.zip</code>) into source directory <code>taco-X.Y.Z</code>. For example: 
+            <pre>$ tar -zxvf taco-X.Y.Z.tar.gz</pre>
+        </p>
+        <p>
+            Compile and install the software into the unpacked directory (note: it might be necessay to <code>chmod +x build.sh</code> to enable the build file to be executed):
+            <pre>$ cd taco-0.5.0
+$ ./build.sh</pre>
+        </p>
+        <p>
+            The build script runs Python setuptools to generate and compile the Cython/C files. This is followed by PyInstaller to package all of the libraries and scripts into one executable.  
+        </p>
+        <p>
+            A binary file called <code>taco_run</code> is generated in the unpacked directory that can be executed to run TACO.
         </p>
       </section>
 
@@ -403,8 +422,8 @@ $ python setup.py install --prefix INSTALL_DIR</pre>
         </ul>
 
         <h3 id="manual-run">Running TACO</h3>
-        <p>Run TACO from the command line as follows:</p>
-        <pre>$ INSTALL_DIR/bin/taco_run.py &lt;options&gt; &lt;gtf_files.txt&gt;</pre>
+        <p>Run TACO from the command line as follows (from either the downloaded platform-specific binary or building from the source code):</p>
+        <pre>$ ./taco_run_{mac,linux} &lt;options&gt; &lt;gtf_files.txt&gt;</pre>
 
         <h3>Arguments</h3>
         <p>A detailed description of the parameters used to control TACO is below:</p>
@@ -688,29 +707,6 @@ $ python setup.py install --prefix INSTALL_DIR</pre>
         supported.
         </p>
 
-        <br/><p class="lead"><strong>Q.</strong>
-        Why do I receive an <code>ImportError</code> exception when I run TACO?
-        For example, I get an error that looks like this:
-        <pre>
-Traceback (most recent call last):
-  File "taco/taco_run.py", line 11, in <module>
-    from taco.lib.run import Run
-ImportError: No module named taco.lib.run
-</pre>
-        </p>
-
-        <p><strong>A.</strong>
-        TACO imports numerous Python modules during runtime.
-        When Python script tries to load other modules, the interpreter
-        searches a number of default directories, and emits an
-        <code>ImportError</code> if a module cannot be found. Since most users
-        choose to install TACO into a custom user directory, your <tt>PYTHONPATH</tt>
-        environment variable must be set up correctly for this to work. If
-        you are using the <tt>bash</tt> command line shell, you can set up
-        you <tt>PYTHONPATH</tt> as follows:
-        <pre>$ export PYTHONPATH=/path/to/taco/lib/python2.7/site-packages:$PYTHONPATH</pre>
-        </p>
-
       </section>
 
       <section id="datasets">
@@ -768,7 +764,7 @@ ImportError: No module named taco.lib.run
         <p>
           Run TACO with the following command:
         </p>
-        <pre>INSTALL_DIR/bin/taco_run.py --gtf-expr-attr FPKM -o my_output_dir list_of_files.txt</pre>
+        <pre>./taco_run_{mac,linux} --gtf-expr-attr FPKM -o my_output_dir list_of_files.txt</pre>
 
         <h3 id="datasets-individual" class="page-header">Individual assemblies</h3>
         <table id="ccle_files_table" class="display" cellspacing="0" width="100%">
