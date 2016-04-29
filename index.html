@@ -283,7 +283,7 @@
               <td>v0.5.0</td>
               <td>4/28/2016</td>
               <td>
-                <a href="https://github.com/tacorna/taco/releases/download/v0.5.0/taco_run_mac">taco_run_mac</a>
+                <a href="https://github.com/tacorna/taco/releases/download/v0.5.0/taco-v0.5.0.OSX_x86_64.tar.gz">taco-v0.5.0.OSX_x86_64.tar.gz </a>(Apple OS X binary Package for OS X v10.7+)
               </td>
           </tr>
           <tr>
@@ -291,10 +291,17 @@
               <td>v0.5.0</td>
               <td>4/28/2016</td>
               <td>
-                <a href="https://github.com/tacorna/taco/releases/download/v0.5.0/taco_run_linux">taco_run_linux</a>
+                <a href="https://github.com/tacorna/taco/releases/download/v0.5.0/taco-v0.5.0.Linux_x86_64.tar.gz">taco-v0.5.0.Linux_x86_64.tar.gz </a>(Linux x86_64 binary package)
               </td>
           </tr>
         </table>
+        </p>
+        <p>Unpack the downloaded binary package:
+          <pre>$ tar -xpvfz taco-VER.tar.gz</pre>
+          (VER is the numeric version of the program)
+          On some machines, it may be necessary to change the permissions of the executable
+          <pre>$ cd taco-VER/
+$ chmod +x taco</pre>
         </p>
 
         <h3 id="gettingstarted-test">Testing the installation</h3>
@@ -305,8 +312,8 @@
           <li><a href="https://raw.githubusercontent.com/tacorna/taco/master/taco_test_files.txt" download="taco_test_files.txt">taco_test_files.txt</a></li>
         </ul>
 
-        <p>In the directory where you placed the two downloaded files and the binary file, type:</p>
-        <pre>./taco_run_{mac,linux} --gtf-expr-attr expr taco_test_files.txt</pre>
+        <p>In the directory where you placed the two downloaded files and unpacked the binary file, type:</p>
+        <pre>./taco --gtf-expr-attr expr taco_test_files.txt</pre>
 
         <p><em>Note:
         Our sample dataset has already been processed by TACO, which converts
@@ -368,9 +375,16 @@
               <td>4/28/2016</td>
               <td>Version used for manuscript submission</td>
               <td>
-                Download
-                <a href="https://github.com/tacorna/taco/archive/v0.5.0.tar.gz">.tar.gz</a>
-                <a href="https://github.com/tacorna/taco/archive/v0.5.0.zip">.zip</a>
+                Source Code:<br>
+                <a href="https://github.com/tacorna/taco/archive/v0.5.0.tar.gz">tar.gz</a>
+                <br>
+                <a href="https://github.com/tacorna/taco/archive/v0.5.0.zip">zip</a>
+                <br>
+                Binary:<br>
+                <a href="https://github.com/tacorna/taco/releases/download/v0.5.0/taco-v0.5.0.OSX_x86_64.tar.gz">taco-v0.5.0.OSX_x86_64.tar.gz </a>(Apple OS X binary Package for OS X v10.7+)
+                <br>
+                <a href="https://github.com/tacorna/taco/releases/download/v0.5.0/taco-v0.5.0.Linux_x86_64.tar.gz">taco-v0.5.0.Linux_x86_64.tar.gz </a>(Linux x86_64 binary package)
+
               </td>
           </tr>
         </table>
