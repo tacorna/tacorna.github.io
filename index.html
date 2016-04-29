@@ -299,6 +299,7 @@
         <p>Unpack the downloaded binary package:
           <pre>$ tar -xpvfz taco-VER.tar.gz</pre>
           (VER is the numeric version of the program)
+          <h4>If necessary, change the permissions of the executable</h4>
           On some machines, it may be necessary to change the permissions of the executable
           <pre>$ cd taco-VER/
 $ chmod +x taco</pre>
@@ -355,7 +356,7 @@ $ chmod +x taco</pre>
 2016-03-30 14:54:02,739 pid=89792 INFO - Removing temporary files
 2016-03-30 14:54:02,740 pid=89792 INFO - Done
 </pre>
-
+<h4>Additional datasets can be found <a href="#datasets" class="goto">here</a></h4>
       </section>
 
       <section id="code">
@@ -437,7 +438,7 @@ $ ./build.sh</pre>
 
         <h3 id="manual-run">Running TACO</h3>
         <p>Run TACO from the command line as follows (from either the downloaded platform-specific binary or building from the source code):</p>
-        <pre>$ ./taco_run_{mac,linux} &lt;options&gt; &lt;gtf_files.txt&gt;</pre>
+        <pre>$ ./taco &lt;options&gt; &lt;gtf_files.txt&gt;</pre>
 
         <h3>Arguments</h3>
         <p>A detailed description of the parameters used to control TACO is below:</p>
