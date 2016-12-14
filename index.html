@@ -280,18 +280,18 @@
           </thead>
           <tr>
               <td>Mac OSX</td>
-              <td>v0.5.1</td>
-              <td>4/28/2016</td>
+              <td>v0.6.0</td>
+              <td>12/13/2016</td>
               <td>
-                <a href="https://github.com/tacorna/taco/releases/download/v0.5.1/taco-v0.5.1.OSX_x86_64.tar.gz">taco-v0.5.1.OSX_x86_64.tar.gz </a>(Apple OS X binary Package for OS X v10.7+)
+                <a href="https://github.com/tacorna/taco/releases/download/v0.6.0/taco-v0.6.OSX_x86_64.tar.gz">taco-v0.5.1.OSX_x86_64.tar.gz </a>(Apple OS X binary Package for OS X v10.7+)
               </td>
           </tr>
           <tr>
               <td>Linux</td>
-              <td>v0.5.1</td>
-              <td>4/28/2016</td>
+              <td>v0.6.0</td>
+              <td>12/13/2016</td>
               <td>
-                <a href="https://github.com/tacorna/taco/releases/download/v0.5.1/taco-v0.5.1.Linux_x86_64.tar.gz">taco-v0.5.1.Linux_x86_64.tar.gz </a>(Linux x86_64 binary package)
+                <a href="https://github.com/tacorna/taco/releases/download/v0.6.0/taco-v0.6.Linux_x86_64.tar.gz">taco-v0.5.1.Linux_x86_64.tar.gz </a>(Linux x86_64 binary package)
               </td>
           </tr>
         </table>
@@ -372,6 +372,16 @@ $ chmod +x taco</pre>
               </tr>
           </thead>
           <tr>
+              <td>v0.6.0</td>
+              <td>12/13/2016</td>
+              <td>Added Reference Comparison Tool</td>
+              <td>
+                <a href="https://github.com/tacorna/taco/releases/download/v0.6.0/taco-v0.6.OSX_x86_64.tar.gz" style="width: 33%; min-width: 30px; float: left;">Mac</a>
+                <a href="https://github.com/tacorna/taco/releases/download/v0.6.0/taco-v0.6.Linux_x86_64.tar.gz" style="width: 33%; min-width: 30px; float: left;">Linux</a>
+                <a href="https://github.com/tacorna/taco/archive/v0.6.0.tar.gz" style="width: 33%; float: left; min-width: 30px;">Source</a>
+              </td>
+          </tr>
+          <tr>
               <td>v0.5.1</td>
               <td>4/28/2016</td>
               <td>Version used for manuscript submission</td>
@@ -423,13 +433,14 @@ $ ./build.sh</pre>
       </section>
 
       <section id="manual">
-        <h2 class="page-header">Manual</h2>
+        <h1 class="page-header">Manual</h1>
         <ul>
-          <li><a href="#manual-run">Run configuration</a></li>
-          <li><a href="#manual-output">Output</a></li>
-        </ul>
+          <li><a href="#manual-run">TACO Run configuration</a></li>
+          <li><a href="#manual-output">TACO Output</a></li>
+          <li><a href="#manual-refcomp">Reference Comparison Tool</a></li>
+        </ul id="manual-run">
 
-        <h3 id="manual-run">Running TACO</h3>
+        <h2 >Running TACO</h2>
         <p>Run TACO from the command line as follows (from either the downloaded platform-specific binary or building from the source code):</p>
         <pre>$ ./taco &lt;options&gt; &lt;gtf_files.txt&gt;</pre>
 
@@ -445,7 +456,6 @@ $ ./build.sh</pre>
 /path/to/my/assemblies/bt474.gtf
 /path/to/my/assemblies/hela.gtf</pre>
         </p>
-
         <h3>General Options</h3>
 
         <p><strong><code>-h/--help</code></strong></p>
@@ -482,14 +492,14 @@ $ ./build.sh</pre>
 
         <h3>Advanced Options</h3>
 
-        <p>TACO has several advanced options that can be used to
+        <p id="manual-output">TACO has several advanced options that can be used to
           configure specific aspects of its behavior, such as change point
           detection and splicing pattern network construction. These parameters
           have been chosen to optimize performance for human transcriptomes.
           We recommend that users leave these options at their default settings.
         </p>
-
-        <h3 id="manual-output">Output</h3>
+        <br >
+        <h2>Output</h3>
         <p>TACO writes output to the directory specified by the
           <code>-o</code> command line option. Within this directory, the
           import output files are:
@@ -502,7 +512,6 @@ $ ./build.sh</pre>
           There one GTF record per row, and each record represents either a
           transcript or an exon within a transcript. The columns are defined as
           follows:</p>
-
         <table class="table">
           <thead>
             <tr>
@@ -668,6 +677,23 @@ $ ./build.sh</pre>
         to <a href="https://genome.ucsc.edu/goldenpath/help/bigBed.html">bigBed</a>
         track format for viewing on genome browsers such as IGV or UCSC.
         </p>
+        <br id="manual-refcomp">
+        <br>
+        <h2>Reference Comparison Tools (Linux Only)</h2>
+        <p>This tool can take any assembly in GTF format and compare to a reference,
+          and provide details on overlap with reference transcripts,
+           nature of that overlap, and can also run the CPAT tool to determine
+           coding potential.
+        </p>
+        <p>We recommend using the GENCODE reference, which can be found
+          <a href="ftp://ftp.sanger.ac.uk/pub/gencode/Gencode_human/release_25/gencode.v25.annotation.gtf.gz">here</a>.
+        </p>
+        <p><strong>Note:</strong> If <strong><code>--cpat</code></strong> flag is used,
+        CPAT(v1.2.2) will be run. Please cite the CPAT tool (<a href="http://nar.oxfordjournals.org/content/41/6/e74.short">reference</a>).
+        <br>
+        <p>Run reference comparison tool as follows: </p>
+        <pre>$ ./taco_ref_comp -o &lt;output_directory&gt; -r &lt;reference_gtf&gt; -t &lt;test_gtf&gt; --cpat (optional flag to run coding potential prediction)
+        </pre>
 
       </section>
 
