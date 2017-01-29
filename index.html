@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>Taco</title>
 
@@ -17,18 +18,18 @@
 
     <!-- Custom CSS -->
     <style>
-      body {
-          padding-top: 70px;
-          font-family: sans-serif;
-      }
+        body {
+            padding-top: 70px;
+            font-family: sans-serif;
+        }
 
-      hr {
-          border:none;
-          border-radius:3px;
-          height:5px;
-          margin:auto;
-          background-color:#FFCB05;
-      }
+        hr {
+            border: none;
+            border-radius: 3px;
+            height: 5px;
+            margin: auto;
+            background-color: #FFCB05;
+        }
     </style>
 
     <script src="js/jquery-2.2.1.min.js"></script>
@@ -36,822 +37,831 @@
     <script src="js/datatables.min.js"></script>
 
     <script>
-      function clear_nav_bar_select() {
-          var all_sections_in_navbar = $("#active_navbar li");
-          all_sections_in_navbar.each(function(index) {
-              $(this).attr('class', '');
-          });
-      }
+        function clear_nav_bar_select() {
+            var all_sections_in_navbar = $("#active_navbar li");
+            all_sections_in_navbar.each(function(index) {
+                $(this).attr('class', '');
+            });
+        }
 
-      function clear_all_pages() {
-          $("#overview").hide();
-          $("#about").hide();
-          $("#gettingstarted").hide();
-          $("#code").hide();
-          $("#build").hide();
-          $("#faq").hide();
-          $("#manual").hide();
-          $("#license").hide();
-          $("#datasets").hide();
-          $("#contact").hide();
-      }
+        function clear_all_pages() {
+            $("#overview").hide();
+            $("#about").hide();
+            $("#gettingstarted").hide();
+            $("#code").hide();
+            $("#build").hide();
+            $("#testinstall").hide();
+            $("#faq").hide();
+            $("#manual").hide();
+            $("#license").hide();
+            $("#datasets").hide();
+            $("#contact").hide();
+            $("#citation").hide();
+        }
 
-      function change_page_to(target) {
-        clear_nav_bar_select();
-        $("#active_navbar li a[href='#" + target + "']").parent().attr('class', 'active');
-        clear_all_pages();
-        $("#" + target).show();
-      }
+        function change_page_to(target) {
+            clear_nav_bar_select();
+            $("#active_navbar li a[href='#" + target + "']").parent().attr('class', 'active');
+            clear_all_pages();
+            $("#" + target).show();
+        }
 
-      $(document).ready(function() {
-          clear_all_pages();
-          $("#overview").show();
-          $(".goto").click(function() {
-              var target = $(this).attr("href");
-              target = target.substring(1,target.length);
-              change_page_to(target);
-              return false;
-          });
+        $(document).ready(function() {
+            clear_all_pages();
+            $("#overview").show();
+            $(".goto").click(function() {
+                var target = $(this).attr("href");
+                target = target.substring(1, target.length);
+                change_page_to(target);
+                return false;
+            });
 
-          // Load datasets from json file using the DataTables library
-          $("#ccle_files_table").DataTable({
-              "ajax": 'data/samples.json',
-              "columns" : [
-                  {"title": "Cell Line"},
-                  {"title": "TCGA Legacy ID"},
-                  {"title": "Disease Abbreviation"},
-                  {"title": "Disease"},
-                  {
-                      "title": "Download GTF",
-                      "render" : function(obj) {
-                        return "<a href=http://mctp-taco.path.med.umich.edu/" + obj + ".gtf.gz>" + obj + ".gtf.gz</a>";
-                      }
-                  }
-              ]
-          });
-      });
+            // Load datasets from json file using the DataTables library
+            $("#ccle_files_table").DataTable({
+                "ajax": 'data/samples.json',
+                "columns": [{
+                        "title": "Cell Line"
+                    },
+                    {
+                        "title": "TCGA Legacy ID"
+                    },
+                    {
+                        "title": "Disease Abbreviation"
+                    },
+                    {
+                        "title": "Disease"
+                    },
+                    {
+                        "title": "Download GTF",
+                        "render": function(obj) {
+                            return "<a href=http://mctp-taco.path.med.umich.edu/" + obj + ".gtf.gz>" + obj + ".gtf.gz</a>";
+                        }
+                    }
+                ]
+            });
+        });
     </script>
-  </head>
+</head>
 
-  <body data-spy="scroll" data-target="logo-sidebar">
+<body data-spy="scroll" data-target="logo-sidebar">
 
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse-1" aria-expanded="false">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse-1" aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#" onclick='clear_nav_bar_select(); clear_all_pages(); $("#overview").show(); return false;'>TACO</a>
-        </div>
+                <a class="navbar-brand" href="#" onclick='clear_nav_bar_select(); clear_all_pages(); $("#overview").show(); return false;'>TACO</a>
+            </div>
 
-        <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li><a href="#about" class="goto" id="about_button">About</a></li>
-            <li><a href="#gettingstarted" class="goto" id="getting_started_button">Getting Started</a></li>
-            <li><a href="#code" class="goto" id="code_button">Code</a></li>
-            <li><a href="#manual" class="goto" id="manual_button">Manual</a></li>
-            <li><a href="#faq" class="goto" id="faq_button">FAQ</a></li>
-            <li><a href="#datasets" class="goto" id="datasets_button">Datasets</a></li>
-            <li><a href="#license" class="goto" id="license_button">License</a></li>
-            <li><a href="#contact" class="goto" id="contact_button">Contact</a></li>
-          </ul>
+            <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="#about" class="goto" id="about_button">About</a></li>
+                    <li><a href="#code" class="goto" id="code_button">Download</a></li>
+                    <li><a href="#manual" class="goto" id="manual_button">Manual</a></li>
+                    <li><a href="#faq" class="goto" id="faq_button">FAQ</a></li>
+                    <li><a href="#datasets" class="goto" id="datasets_button">Datasets</a></li>
+                    <li><a href="#license" class="goto" id="license_button">License</a></li>
+                    <li><a href="#citation" class="goto" id="cite">How to Cite</a></li>
+                    <li><a href="#contact" class="goto" id="contact_button">Contact</a></li>
+                </ul>
+            </div>
         </div>
-      </div>
     </nav>
 
     <!-- Title bar -->
     <div class="container" id="overview">
-      <header class="jumbotron subhead">
-        <img class="img-responsive center-block" src="img/taco_logo.png" height="200" style="height:200px;" alt="TACO icon">
-        <h2 class="text-center">TACO: Multi-sample transcriptome assembly from RNA-Seq</h2>
-        <p class="text-center lead">
-        Transcriptome assemblers reconstruct full-length transcripts from
-        the short sequence fragments generated by RNA-Seq. Large consortia
-        such as <a href="http://cancergenome.nih.gov">TCGA</a>,
-        <a href="https://dcc.icgc.org">ICGC</a>,
-        <a href="http://www.gtexportal.org">GTex</a>,
-        <a href="https://www.encodeproject.org">ENCODE</a>, the
-        <a href="http://www.broadinstitute.org/ccle">Cancer Cell Line Encyclopedia (CCLE)</a>,
-        and others have performed RNA-Seq on thousands of human tissues and cell lines,
-        providing an unparalleled resource for investigating
-        transcriptional diversity and complexity. Towards this end, we
-        present Transcriptome Assemblies Combined into One (TACO), an
-        algorithm that reconstructs a consensus transcriptome from a
-        collection of individual assemblies. TACO employs change point
-        detection to break apart complex loci and correctly delineate
-        transcript start and end sites, and a dynamic programming approach
-        to assemble transcripts from a network of splicing patterns.
-        TACO vastly outperforms existing software tools such
-        as <a href="http://cole-trapnell-lab.github.io/cufflinks/cuffmerge">Cuffmerge</a>
-        and <a href="https://ccb.jhu.edu/software/stringtie">Stringtie merge</a>.
-        See the results of our comparison analysis
-        <a href="#about" class="goto" id="about_button">here</a>.
-        </p>
-      </header>
+        <header class="jumbotron subhead">
+            <img class="img-responsive center-block" src="img/taco_logo.png" height="200" style="height:200px;" alt="TACO icon">
+            <h2 class="text-center">TACO: Multi-sample transcriptome assembly from RNA-Seq</h2>
+            <p class="text-center lead">
+                Transcriptome assemblers reconstruct full-length transcripts from the short sequence fragments generated by RNA-Seq. Large consortia such as <a href="http://cancergenome.nih.gov">TCGA</a>,
+                <a href="https://dcc.icgc.org">ICGC</a>,
+                <a href="http://www.gtexportal.org">GTex</a>,
+                <a href="https://www.encodeproject.org">ENCODE</a>, the
+                <a href="http://www.broadinstitute.org/ccle">Cancer Cell Line Encyclopedia (CCLE)</a>, and others have performed RNA-Seq on thousands of human tissues and cell lines, providing an unparalleled resource for investigating transcriptional
+                diversity and complexity. Towards this end, we present Transcriptome Assemblies Combined into One (TACO), an algorithm that reconstructs a consensus transcriptome from a collection of individual assemblies. TACO employs change point detection
+                to break apart complex loci and correctly delineate transcript start and end sites, and a dynamic programming approach to assemble transcripts from a network of splicing patterns. TACO vastly outperforms existing software tools such as
+                <a href="http://cole-trapnell-lab.github.io/cufflinks/cuffmerge">Cuffmerge</a> and <a href="https://ccb.jhu.edu/software/stringtie">Stringtie merge</a>. Please refernece our manuscript in
+                <a href="http://www.nature.com/nmeth/journal/v14/n1/full/nmeth.4078.html">Nature Methods</a> for further details and the results of our comparison analysis. TACO also contains an easy to use companion tool for comparing meta-assemblies
+                to reference transcriptoms, assessing overlap with reference and also protein coding potential.
+            </p>
+        </header>
     </div>
 
     <div class="container">
-      <!-- About Section -->
-      <section id="about">
-        <h2 class="page-header">Methods</h2>
-        <div class="container">
-          <div class="row">
-            <div class="col-xs-8">
-              <img class="img-responsive center-block" src="img/figure_1_schematic.png" width="100%" alt="Methods">
+        <!-- About Section -->
+        <section id="about">
+            <h2 class="page-header">Methods</h2>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-8">
+                        <img class="img-responsive center-block" src="img/figure_1_schematic.png" width="100%" alt="Methods">
+                    </div>
+                    <div class="col-xs-4">
+                        <p class="lead">Multi-sample transcriptome assembly protocol</p>
+                        <ol>
+                            <li>Sequence reads from each dataset are aligned to the reference genome using
+                                <a href="https://github.com/alexdobin/STAR">STAR</a>,
+                                <a href="http://ccb.jhu.edu/software/hisat2">HISAT2</a>, or another RNA-Seq aligner</li>
+                            <li>Read alignments (SAM/BAM/CRAM format) from each dataset are assembled into transfrags using
+                                <a href="http://cole-trapnell-lab.github.io/cufflinks">Cufflinks</a>,
+                                <a href="https://ccb.jhu.edu/software/stringtie">StringTie</a>, or another <em>ab initio</em> transcriptome assembly tool.</li>
+                            <li>Multi-sample assembly is performed on the collection of
+                                <em>ab initio</em> assemblies (GTF format) by
+                                <strong>TACO</strong>, resulting in a consensus merged transcriptome
+                            </li>
+                            <li>Downstream analysis of gene expression, conservation, variation, and functionality can be performed</li>
+                        </ol>
+                    </div>
+                </div>
             </div>
-            <div class="col-xs-4">
-              <p class="lead">Multi-sample transcriptome assembly protocol</p>
-              <ol>
-                <li>Sequence reads from each dataset are aligned to the
-                reference genome using
-                <a href="https://github.com/alexdobin/STAR">STAR</a>,
-                <a href="http://ccb.jhu.edu/software/hisat2">HISAT2</a>,
-                or another RNA-Seq aligner</li>
-                <li>Read alignments (SAM/BAM/CRAM format) from each dataset
-                are assembled into transfrags using
-                <a href="http://cole-trapnell-lab.github.io/cufflinks">Cufflinks</a>,
-                <a href="https://ccb.jhu.edu/software/stringtie">StringTie</a>,
-                or another <em>ab initio</em> transcriptome assembly tool.</li>
-                <li>Multi-sample assembly is performed on the collection of
-                <em>ab initio</em> assemblies (GTF format) by
-                <strong>TACO</strong>, resulting in a consensus merged
-                transcriptome</li>
-                <li>Downstream analysis of gene expression, conservation,
-                variation, and functionality can be performed</li>
-              </ol>
+
+            <h2 class="page-header">Results</h2>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-8">
+                        <img class="img-responsive center-block" src="img/figure_2a.png" width="100%" alt="Methods">
+                    </div>
+                    <div class="col-xs-4">
+                        <p class="lead">Varying the number of input assemblies</p>
+                        Performance metrics for TACO, Cuffmerge, and StringTie when merging different numbers of input assemblies. Recall (i.e., sensitivity), precision and the F-measure for all three tools were assessed for splicing patterns, splice junctions, and bases. Twenty
+                        batches were randomly selected at each number of assemblies. Points represent the mean statistic across the 20 runs, error bars represent the 95% confidence interval.
+                    </div>
+                </div>
+
+                <br/><br/>
+
+                <div class="row">
+                    <div class="col-xs-8">
+                        <img class="img-responsive center-block" src="img/figure_2b.png" width="100%" alt="Methods">
+                    </div>
+                    <div class="col-xs-4">
+                        <p class="lead">Varying isoform fraction cutoff</p>
+                        <p>The parameter <code>--isoform-frac FRAC</code> configures TACO to only report isoforms with abundance ratio more than
+                            <code>FRAC</code> of the most abundant transcript in the locus</p>
+                        <p>The precision-recall (PR) plots depict the performance for the three merging tools at 50 different isoform fraction cutoffs ranging from 0.001-0.999. Statistics describe the merger of the 55 breast cancer cell lines in the CCLE.</p>
+                    </div>
+                </div>
+
+                <br/><br/>
+
+                <div class="row">
+                    <div class="col-xs-8">
+                        <img class="img-responsive center-block" src="img/figure_2c.png" width="100%" alt="Results">
+                    </div>
+                    <div class="col-xs-4">
+                        <p class="lead">Performance for highly expressed transcripts</p>
+                        <p>The precision-recall (PR) plots depict the performance for the three merging tools across subsets of the top 500, 1k, 1.5k, 2k, 3k, 5k, 7k, 10k, 12k, 15k, 18k, 20k, 22k, 25k, 27k, and 30k highest expressed transcripts in the merger
+                            of 55 breast cancer cell lines from the CCLE</p>
+                    </div>
+                </div>
+
+                <br/><br/>
+
+                <div class="row">
+                    <div class="col-xs-8">
+                        <img class="img-responsive center-block" src="img/figure_2d.png" alt="Results">
+                    </div>
+                    <div class="col-xs-4">
+                        <p class="lead">Fraction of read-through transcripts</p>
+                        <p>Scatterplot depicting the fraction of read-through genes produced in the multi-sample assembly from the three merge tools. Gene designated as being a read-through if it contains at least one transcript isoform bearing exonic overlap
+                            with two separate protein-coding genes on the same strand. Fraction of read-throughs was determined for assemblies at 50 different isoform fraction cutoffs ranging from 0.001-0.999.</p>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
+        </section>
 
-        <h2 class="page-header">Results</h2>
-        <div class="container">
-          <div class="row">
-            <div class="col-xs-8">
-              <img class="img-responsive center-block" src="img/figure_2a.png" width="100%" alt="Methods">
-            </div>
-            <div class="col-xs-4">
-              <p class="lead">Varying the number of input assemblies</p>
-              Performance metrics for TACO, Cuffmerge, and
-              StringTie when merging different numbers of input assemblies. Recall
-              (i.e., sensitivity), precision and the F-measure for all three
-              tools were assessed for splicing patterns, splice junctions,
-              and bases. Twenty batches were randomly selected at each
-              number of assemblies. Points represent the mean statistic
-              across the 20 runs, error bars represent the 95% confidence
-              interval.
-            </div>
-          </div>
 
-          <br/><br/>
+        <section id="code">
+            <h2 class="page-header">Download Code</h2>
+            <h4>Releases</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Version</th>
+                        <th>Date</th>
+                        <th>Changes</th>
+                        <th>Execuatble Binaries</th>
+                        <th>Source Package</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>v0.6.1</td>
+                    <td>1/28/2017</td>
+                    <td>Added Refcomp Source Code and Added Mac Support</td>
+                    <td>
+                        <a href="https://github.com/tacorna/taco/releases/download/v0.6.1/taco-v0.6.1.OSX_x86_64.tar.gz" style="width: 33%; min-width: 30px; float: left;">Mac</a>
+                        <a href="https://github.com/tacorna/taco/releases/download/v0.6.1/taco-v0.6.1.Linux_x86_64.tar.gz" style="width: 33%; min-width: 30px; float: left;">Linux</a>
+                    </td>
+                    <td><a href="https://github.com/tacorna/taco/archive/v0.6.1.tar.gz" style="width: 33%; float: left; min-width: 30px;">Source</a></td>
+                </tr>
+                <tr>
+                    <td>v0.6.0</td>
+                    <td>12/13/2016</td>
+                    <td>Added Reference Comparison Tool</td>
+                    <td>
+                        <a href="https://github.com/tacorna/taco/releases/download/v0.6.0/taco-v0.6.OSX_x86_64.tar.gz" style="width: 33%; min-width: 30px; float: left;">Mac</a>
+                        <a href="https://github.com/tacorna/taco/releases/download/v0.6.0/taco-v0.6.Linux_x86_64.tar.gz" style="width: 33%; min-width: 30px; float: left;">Linux</a>
+                    </td>
+                    <td><a href="https://github.com/tacorna/taco/archive/v0.6.0.tar.gz" style="width: 33%; float: left; min-width: 30px;">Source</a></td>
+                </tr>
+                <tr>
+                    <td>v0.5.1</td>
+                    <td>4/28/2016</td>
+                    <td>Version used for manuscript submission</td>
+                    <td>
+                        <a href="https://github.com/tacorna/taco/releases/download/v0.5.1/taco-v0.5.1.OSX_x86_64.tar.gz" style="width: 33%; min-width: 30px; float: left;">Mac</a>
+                        <a href="https://github.com/tacorna/taco/releases/download/v0.5.1/taco-v0.5.1.Linux_x86_64.tar.gz" style="width: 33%; min-width: 30px; float: left;">Linux</a>
+                    </td>
+                    <td><a href="https://github.com/tacorna/taco/archive/v0.5.1.tar.gz" style="width: 33%; float: left; min-width: 30px;">Source</a></td>
+                </tr>
+            </table>
+            <span>&nbsp</span>
+            <h4>Source Code</h4>
+            <p>The TACO GitHub repository is located
+                <a href="https://github.com/tacorna/taco">here</a>.
+            </p>
+            <span>&nbsp</span>
 
-          <div class="row">
-            <div class="col-xs-8">
-              <img class="img-responsive center-block" src="img/figure_2b.png" width="100%" alt="Methods">
-            </div>
-            <div class="col-xs-4">
-              <p class="lead">Varying isoform fraction cutoff</p>
-              <p>The parameter <code>--isoform-frac FRAC</code> configures
-              TACO to only report isoforms with abundance ratio more than
-              <code>FRAC</code> of the most abundant transcript in the locus</p>
-              <p>The precision-recall (PR) plots depict the performance for the
-              three merging tools at 50 different isoform fraction cutoffs ranging
-              from 0.001-0.999. Statistics describe the merger of the 55 breast
-              cancer cell lines in the CCLE.</p>
-            </div>
-          </div>
+            <h4>Build Code</h4>
+            <p>More information on the build procedure is located <a href="#build" class="goto" id="build_button">here</a>.</p>
+            <span>&nbsp</span>
+            <h4>Test Installation</h4>
+            <p>Instructions on testing the installatoin are <a href="#testinstall" class="goto">here</a>.</p>
+            <span>&nbsp</span>
+            <h2 class="page-header">Download References</h2>
+            <p>For your convenience we are providing links for human references.</p>
+            <ul>
+                <li><a href="http://mctp-taco.path.med.umich.edu/gencode.v25.annotation.gtf.gz">GENCODEv25 Human Transcriptome GTF</a></li>
+                <li><a href="http://mctp-taco.path.med.umich.edu/gencode.v25.metadata.transcript.tsv.gz">GENCODEv25 Human Transcriptome Metadata</a></li>
+                <li><a href="http://mctp-taco.path.med.umich.edu/GRCh38.p2.genome.fa.gz">GRCh38 Genome Fasta (Used for CPAT)</a></li>
+            </ul id="manual-run">
+            </p>
 
-          <br/><br/>
 
-          <div class="row">
-            <div class="col-xs-8">
-              <img class="img-responsive center-block" src="img/figure_2c.png" width="100%" alt="Results">
-            </div>
-            <div class="col-xs-4">
-              <p class="lead">Performance for highly expressed transcripts</p>
-              <p>The precision-recall (PR) plots depict the performance for the
-              three merging tools across subsets of the top 500, 1k, 1.5k,
-              2k, 3k, 5k, 7k, 10k, 12k, 15k, 18k, 20k, 22k, 25k, 27k, and 30k
-              highest expressed transcripts in the merger of 55 breast cancer
-              cell lines from the CCLE</p>
-            </div>
-          </div>
+        </section>
 
-          <br/><br/>
+        <section id="testinstall">
+            <h2 class="page-header">Test Installation</h2>
+            <p>Unpack the downloaded binary package:
+                <pre>$ tar -xpvfz taco-&ltRELEASE&gt.tar.gz</pre> On some machines, it may be necessary to change the permissions of the executable
+                <pre>$ cd taco-&ltRELEASE&gt/
+      $ chmod +x taco</pre>
+            </p>
 
-          <div class="row">
-            <div class="col-xs-8">
-              <img class="img-responsive center-block" src="img/figure_2d.png" alt="Results">
-            </div>
-            <div class="col-xs-4">
-              <p class="lead">Fraction of read-through transcripts</p>
-              <p>Scatterplot depicting the fraction of read-through
-              genes produced in the multi-sample assembly from the three merge
-              tools. Gene designated as being a read-through if it contains
-              at least one transcript isoform bearing exonic overlap with
-              two separate protein-coding genes on the same strand. Fraction
-              of read-throughs was determined for assemblies at 50 different
-              isoform fraction cutoffs ranging from 0.001-0.999.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+            <p>To test installatoin, download the following two test data files and place them in the same directory as the TACO executable:</p>
+            <ul>
+                <li><a href="https://raw.githubusercontent.com/tacorna/taco/master/taco_test.gtf" download="taco_test.gtf">taco_test.gtf</a></li>
+                <li><a href="https://raw.githubusercontent.com/tacorna/taco/master/taco_test_files.txt" download="taco_test_files.txt">taco_test_files.txt</a></li>
+            </ul>
 
-      <!-- Getting Started Section-->
-      <section id="gettingstarted">
-        <h1 class="page-header">Getting Started</h1>
-        <ul>
-          <li><a href="#gettingstarted-download">Download</a></li>
-          <li><a href="#gettingstarted-test">Test the installation</a></li>
-        </ul>
+            <p>In the directory where you placed the two downloaded files and unpacked the binary file, type:</p>
+            <pre>./taco --gtf-expr-attr expr taco_test_files.txt</pre>
 
-        <h3 id="gettingstarted-download">Download</h3>
+            <p><em>Note:
+      Our sample dataset has already been processed by TACO, which converts
+      the attribute specified by <code>&#8209;&#8209;gtf-expr-attr</code> (e.g. FPKM)
+      into <code>expr</code>. Hence, we use the argument
+      <code>&#8209;&#8209;gtf-expr-attr expr</code> here.</em>
+            </p>
 
-        <h4>Download the latest TACO release</h4>
-        <p>
-          <table class="table">
-          <thead>
-              <tr>
-                  <th>OS</th>
-                  <th>Version</th>
-                  <th>Date</th>
-                  <th>Binary Link</th>
-              </tr>
-          </thead>
-          <tr>
-              <td>Mac OSX</td>
-              <td>v0.6.0</td>
-              <td>12/13/2016</td>
-              <td>
-                <a href="https://github.com/tacorna/taco/releases/download/v0.6.0/taco-v0.6.OSX_x86_64.tar.gz">taco-v0.5.1.OSX_x86_64.tar.gz </a>(Apple OS X binary Package for OS X v10.7+)
-              </td>
-          </tr>
-          <tr>
-              <td>Linux</td>
-              <td>v0.6.0</td>
-              <td>12/13/2016</td>
-              <td>
-                <a href="https://github.com/tacorna/taco/releases/download/v0.6.0/taco-v0.6.Linux_x86_64.tar.gz">taco-v0.5.1.Linux_x86_64.tar.gz </a>(Linux x86_64 binary package)
-              </td>
-          </tr>
-        </table>
-        </p>
-        <p>Unpack the downloaded binary package:
-          <pre>$ tar -xpvfz taco-VER.tar.gz</pre>
-          (VER is the numeric version of the program)
-          <h4>If necessary, change the permissions of the executable</h4>
-          On some machines, it may be necessary to change the permissions of the executable
-          <pre>$ cd taco-VER/
-$ chmod +x taco</pre>
-        </p>
+            <p>You should see the following output:</p>
+            <pre>
+      2016-03-30 14:54:02,097 pid=89792 INFO - taco version 0.5.0
+      2016-03-30 14:54:02,097 pid=89792 INFO - ------------------------------------------------------------------------------
+      2016-03-30 14:54:02,097 pid=89792 INFO - verbose logging:                   False
+      2016-03-30 14:54:02,097 pid=89792 INFO - num processes:                     1
+      2016-03-30 14:54:02,097 pid=89792 INFO - output directory:                  taco
+      2016-03-30 14:54:02,097 pid=89792 INFO - min transfrag length:              200
+      2016-03-30 14:54:02,098 pid=89792 INFO - min expression:                    0.5
+      2016-03-30 14:54:02,098 pid=89792 INFO - reference GTF file:                None
+      2016-03-30 14:54:02,098 pid=89792 INFO - guided assembly mode:              False
+      2016-03-30 14:54:02,098 pid=89792 INFO - guided strand mode:                False
+      2016-03-30 14:54:02,098 pid=89792 INFO - guided ends mode:                  False
+      2016-03-30 14:54:02,098 pid=89792 INFO - GTF expression attribute:          expr
+      2016-03-30 14:54:02,098 pid=89792 INFO - isoform fraction:                  0.05
+      2016-03-30 14:54:02,098 pid=89792 INFO - max_isoforms:                      0
+      2016-03-30 14:54:02,098 pid=89792 INFO - change point:                      True
+      2016-03-30 14:54:02,098 pid=89792 INFO - change point pvalue:               0.001
+      2016-03-30 14:54:02,098 pid=89792 INFO - change point fold change:          0.85
+      2016-03-30 14:54:02,098 pid=89792 INFO - change point trim:                 True
+      2016-03-30 14:54:02,098 pid=89792 INFO - path graph loss threshold:         0.1
+      2016-03-30 14:54:02,098 pid=89792 INFO - path frac:                         0.0
+      2016-03-30 14:54:02,099 pid=89792 INFO - max paths:                         0
+      2016-03-30 14:54:02,099 pid=89792 INFO - Samples: 1
+      2016-03-30 14:54:02,099 pid=89792 INFO - Aggregating GTF files
+      2016-03-30 14:54:02,210 pid=89792 INFO - Sorting GTF
+      2016-03-30 14:54:02,236 pid=89792 INFO - Indexing Loci
+      2016-03-30 14:54:02,239 pid=89792 INFO - Assembling GTF files
+      2016-03-30 14:54:02,239 pid=89792 INFO - Assembling in parallel using 1 processes
+      2016-03-30 14:54:02,729 pid=89792 INFO - Merging output files
+      2016-03-30 14:54:02,739 pid=89792 INFO - Removing temporary files
+      2016-03-30 14:54:02,740 pid=89792 INFO - Done
+      </pre>
+        </section>
 
-        <h3 id="gettingstarted-test">Testing the installation</h3>
 
-        <h4>Download the following two test data files:</h4>
-        <ul>
-          <li><a href="https://raw.githubusercontent.com/tacorna/taco/master/taco_test.gtf" download="taco_test.gtf">taco_test.gtf</a></li>
-          <li><a href="https://raw.githubusercontent.com/tacorna/taco/master/taco_test_files.txt" download="taco_test_files.txt">taco_test_files.txt</a></li>
-        </ul>
 
-        <p>In the directory where you placed the two downloaded files and unpacked the binary file, type:</p>
-        <pre>./taco --gtf-expr-attr expr taco_test_files.txt</pre>
 
-        <p><em>Note:
-        Our sample dataset has already been processed by TACO, which converts
-        the attribute specified by <code>&#8209;&#8209;gtf-expr-attr</code> (e.g. FPKM)
-        into <code>expr</code>. Hence, we use the argument
-        <code>&#8209;&#8209;gtf-expr-attr expr</code> here.</em>
-        </p>
+        <section id="build">
+            <h2 class="page-header">Build Instructions
+          <small>
+              TACO is written in Python with C extensions for performance critical code
+          </small>
+        </h2>
+            <h4>Required Dependencies:</h4>
+            <ul>
+                <li><a href="http://www.python.org">Python 2.7</a></li>
+                <li><a href="http://www.numpy.org">Numpy 1.9.2+</a></li>
+                <li><a href="http://cython.org">Cython 0.23.4+</a></li>
+            </ul>
+            <h4>Optional Dependencies<small> (to generate single file binaries): </small></h4>
+            <ul>
+                <li><a href="http://www.pyinstaller.org/">PyInstaller 3.0+</a></li>
+            </ul>
+            <span>&nbsp</span>
 
-        <p>You should see the following output:</p>
-        <pre>
-2016-03-30 14:54:02,097 pid=89792 INFO - taco version 0.5.0
-2016-03-30 14:54:02,097 pid=89792 INFO - ------------------------------------------------------------------------------
-2016-03-30 14:54:02,097 pid=89792 INFO - verbose logging:                   False
-2016-03-30 14:54:02,097 pid=89792 INFO - num processes:                     1
-2016-03-30 14:54:02,097 pid=89792 INFO - output directory:                  taco
-2016-03-30 14:54:02,097 pid=89792 INFO - min transfrag length:              200
-2016-03-30 14:54:02,098 pid=89792 INFO - min expression:                    0.5
-2016-03-30 14:54:02,098 pid=89792 INFO - reference GTF file:                None
-2016-03-30 14:54:02,098 pid=89792 INFO - guided assembly mode:              False
-2016-03-30 14:54:02,098 pid=89792 INFO - guided strand mode:                False
-2016-03-30 14:54:02,098 pid=89792 INFO - guided ends mode:                  False
-2016-03-30 14:54:02,098 pid=89792 INFO - GTF expression attribute:          expr
-2016-03-30 14:54:02,098 pid=89792 INFO - isoform fraction:                  0.05
-2016-03-30 14:54:02,098 pid=89792 INFO - max_isoforms:                      0
-2016-03-30 14:54:02,098 pid=89792 INFO - change point:                      True
-2016-03-30 14:54:02,098 pid=89792 INFO - change point pvalue:               0.001
-2016-03-30 14:54:02,098 pid=89792 INFO - change point fold change:          0.85
-2016-03-30 14:54:02,098 pid=89792 INFO - change point trim:                 True
-2016-03-30 14:54:02,098 pid=89792 INFO - path graph loss threshold:         0.1
-2016-03-30 14:54:02,098 pid=89792 INFO - path frac:                         0.0
-2016-03-30 14:54:02,099 pid=89792 INFO - max paths:                         0
-2016-03-30 14:54:02,099 pid=89792 INFO - Samples: 1
-2016-03-30 14:54:02,099 pid=89792 INFO - Aggregating GTF files
-2016-03-30 14:54:02,210 pid=89792 INFO - Sorting GTF
-2016-03-30 14:54:02,236 pid=89792 INFO - Indexing Loci
-2016-03-30 14:54:02,239 pid=89792 INFO - Assembling GTF files
-2016-03-30 14:54:02,239 pid=89792 INFO - Assembling in parallel using 1 processes
-2016-03-30 14:54:02,729 pid=89792 INFO - Merging output files
-2016-03-30 14:54:02,739 pid=89792 INFO - Removing temporary files
-2016-03-30 14:54:02,740 pid=89792 INFO - Done
-</pre>
-<h4>Additional datasets can be found <a href="#datasets" class="goto">here</a></h4>
-      </section>
 
-      <section id="code">
-        <h2 class="page-header">Download Code</h2>
-        <h4>Releases</h4>
-        <table class="table">
-          <thead>
-              <tr>
-                  <th>Version</th>
-                  <th>Date</th>
-                  <th>Changes</th>
-                  <th>Link</th>
-              </tr>
-          </thead>
-          <tr>
-              <td>v0.6.0</td>
-              <td>12/13/2016</td>
-              <td>Added Reference Comparison Tool</td>
-              <td>
-                <a href="https://github.com/tacorna/taco/releases/download/v0.6.0/taco-v0.6.OSX_x86_64.tar.gz" style="width: 33%; min-width: 30px; float: left;">Mac</a>
-                <a href="https://github.com/tacorna/taco/releases/download/v0.6.0/taco-v0.6.Linux_x86_64.tar.gz" style="width: 33%; min-width: 30px; float: left;">Linux</a>
-                <a href="https://github.com/tacorna/taco/archive/v0.6.0.tar.gz" style="width: 33%; float: left; min-width: 30px;">Source</a>
-              </td>
-          </tr>
-          <tr>
-              <td>v0.5.1</td>
-              <td>4/28/2016</td>
-              <td>Version used for manuscript submission</td>
-              <td>
-                <a href="https://github.com/tacorna/taco/releases/download/v0.5.1/taco-v0.5.1.OSX_x86_64.tar.gz" style="width: 33%; min-width: 30px; float: left;">Mac</a>
-                <a href="https://github.com/tacorna/taco/releases/download/v0.5.1/taco-v0.5.1.Linux_x86_64.tar.gz" style="width: 33%; min-width: 30px; float: left;">Linux</a>
-                <a href="https://github.com/tacorna/taco/archive/v0.5.1.tar.gz" style="width: 33%; float: left; min-width: 30px;">Source</a>
-              </td>
-          </tr>
-        </table>
+            <h4>Building TACO on your system:</h4>
+            <p>
+                Source files can be obtained from <a href="#code" class="goto" id="code_button">
+            download</a> section. Unpack the release file (<code>.tar.gz</code> or
+                <code>.zip</code>) into source directory <code>taco-X.Y.Z</code>. For example:
+                <pre>$ tar -zxvf taco-X.Y.Z.tar.gz</pre>
+            </p>
+            <span>&nbsp</span>
+            <p>If pyinstaller is installed, the <code>build.sh</code> bash script can be used to compile, install, and generate executable binary files. (note: it might be necessay to <code>chmod +x build.sh</code> to enable the build file to be executed).
+                e.g.:
+                <pre>$ cd taco-&ltRELEASE&gt
+$ ./build.sh</pre> Two binary files called <code>taco_run</code> and <code>taco_refcomp</code> are generated in the unpacked directory that can be executed to run TACO and TACO-refcomp.
+            </p>
+            <span>&nbsp</span>
+            <p>To install TACO and run without creating an executable, run the following:
+                <pre>$ cd taco-&ltRELEASE&gt
+$ python setup.py build</pre> The TACO code and reference comparison script can be found in
+                <code>&ltinstall_dir&gt/build/lib*/taco/</code> as <code>taco_run.py</code> and <code>taco_refcomp.py</code>. You must either run these scripts from the <code>&ltinstall_dir&gt/build/lib*/taco/</code> directory:
+                <pre>$ cd build/lib*/taco
+$ python taco_run.py -h
+$ python taco_refcomp.py -h
+</pre> or add the build directory to your python path to call this script elsewhere:
+                <pre>$ export PYTHONPATH=&ltinsatll_dir&gt/build/lib*/taco:$PYTHONPATH</pre>
+            </p>
+        </section>
 
-        <h4>Source Code</h4>
-        <p>The TACO GitHub repository is located
-        <a href="https://github.com/tacorna/taco">here</a>.
-        </p>
+        <section id="manual">
+            <h1 class="page-header">Manual</h1>
+            <div id="manual_tab" class="container">
+            <ul class="nav nav-tabs">
+            			<li class="active">
+                    <a  href="#1" data-toggle="tab">TACO</a>
+            			</li>
+            			<li><a href="#2" data-toggle="tab">Refcomp</a>
+            			</li>
+            		</ul>
 
-        <h4>Build Code</h4>
-        <p>More information on the build procedure is located <a href="#build" class="goto" id="build_button">here</a>.</p>
-      </section>
+            			<div class="tab-content ">
+            			  <div class="tab-pane active" id="1">
+                        <br>
+                        <p>Run TACO from the command line as follows (from either the downloaded platform-specific binary or building from the source code):</p>
+                        <pre>$ ./taco &lt;options&gt; &lt;gtf_files.txt&gt;</pre>
 
-      <section id="build">
-        <h3>Build</h3>
-        <h4>Requirements for building TACO on your system</h4>
-        <p>
-            TACO is written in Python with C extensions for performance critical code. Required packages include:
-        </p>
-        <ul>
-          <li><a href="http://www.python.org">Python 2.7</a></li>
-          <li><a href="http://www.numpy.org">Numpy 1.9.2+</a></li>
-          <li><a href="http://cython.org">Cython 0.23.4+</a></li>
-          <li><a href="http://www.pyinstaller.org/">PyInstaller 3.0+</a></li>
-        </ul>
-        <h4>Building TACO on your system</h4>
-        <p>
-            Unpack the release file (<code>.tar.gz</code> or <code>.zip</code>) into source directory <code>taco-X.Y.Z</code>. For example:
-            <pre>$ tar -zxvf taco-X.Y.Z.tar.gz</pre>
-        </p>
-        <p>
-            Compile and install the software into the unpacked directory (note: it might be necessay to <code>chmod +x build.sh</code> to enable the build file to be executed):
-            <pre>$ cd taco-0.5.0
-$ ./build.sh</pre>
-        </p>
-        <p>
-            The build script runs Python setuptools to generate and compile the Cython/C files. This is followed by PyInstaller to package all of the libraries and scripts into one executable.
-        </p>
-        <p>
-            A binary file called <code>taco_run</code> is generated in the unpacked directory that can be executed to run TACO.
-        </p>
-      </section>
+                        <h2 class="page-header">Arguments</h2>
+                        <p>A detailed description of the parameters used to control TACO is below:</p>
 
-      <section id="manual">
-        <h1 class="page-header">Manual</h1>
-        <ul>
-          <li><a href="#manual-run">TACO Run configuration</a></li>
-          <li><a href="#manual-output">TACO Output</a></li>
-          <li><a href="#manual-refcomp">Reference Comparison Tool</a></li>
-        </ul id="manual-run">
+                        <p><strong><code>&lt;gtf_files.txt&gt;</code></strong></p>
+                        <p>This required input to TACO is a text file containing paths to files in the
+                            <a href="http://mblab.wustl.edu/GTF22.html">GTF 2.2 format</a>, one per line, produced by an <em>ab initio</em> assembler. For example, the text file passed to TACO could look like this:</p>
+                        <pre>/path/to/my/assemblies/mcf7.gtf
+            /path/to/my/assemblies/bt474.gtf
+            /path/to/my/assemblies/hela.gtf</pre>
+                        </p>
+                        <br>
+                        <h3>General Options</h3>
 
-        <h2 >Running TACO</h2>
-        <p>Run TACO from the command line as follows (from either the downloaded platform-specific binary or building from the source code):</p>
-        <pre>$ ./taco &lt;options&gt; &lt;gtf_files.txt&gt;</pre>
+                        <p><strong><code>-h/--help</code></strong></p>
+                        <p>Prints the help message and exits</p>
 
-        <h3>Arguments</h3>
-        <p>A detailed description of the parameters used to control TACO is below:</p>
+                        <p><strong><code>-v/--verbose</code></strong></p>
+                        <p>Enables detailed logging for debugging purposes</p>
 
-        <p><strong><code>&lt;gtf_files.txt&gt;</code></strong></p>
-        <p>This required input to TACO is a text file containing paths to files in the
-          <a href="http://mblab.wustl.edu/GTF22.html">GTF 2.2 format</a>,
-          one per line, produced by an <em>ab initio</em> assembler.
-          For example, the text file passed to TACO could look like this:</p>
-          <pre>/path/to/my/assemblies/mcf7.gtf
-/path/to/my/assemblies/bt474.gtf
-/path/to/my/assemblies/hela.gtf</pre>
-        </p>
-        <h3>General Options</h3>
+                        <p><strong><code>-p/--num-processes N</code></strong> <code>(default=1)</code></p>
+                        <p>Run TACO in parallel mode with N processes</p>
 
-        <p><strong><code>-h/--help</code></strong></p>
-        <p>Prints the help message and exits</p>
+                        <p><strong><code>-o/--output-dir DIR</code></strong></p>
+                        <p>Directory where output files will be stored.
+                            <em>This directory must not already exist.</em></p>
 
-        <p><strong><code>-v/--verbose</code></strong></p>
-        <p>Enables detailed logging for debugging purposes</p>
+                        <p><strong><code>--gtf-expr-attr ATTR</code></strong> <code>(default=FPKM)</code></p>
+                        <p>GTF attribute field containing expression estimate. The default setting is
+                            <code>FPKM</code> for Cufflinks GTF input.</p>
 
-        <p><strong><code>-p/--num-processes N</code></strong> <code>(default=1)</code></p>
-        <p>Run TACO in parallel mode with N processes</p>
+                        <p><strong><code>--min-transfrag-length N</code></strong> <code>(default 200bp)</code></p>
+                        <p>Pre-filters input transfrags with <code>length < N</code> prior to assembly. Set to <code>0</code> to disable this filter.</p>
 
-        <p><strong><code>-o/--output-dir DIR</code></strong></p>
-        <p>Directory where output files will be stored.
-          <em>This directory must not already exist.</em></p>
+                        <p><strong><code>--min-expr X</code></strong> <code>(default 0.5)</code></p>
+                        <p>Pre-filters input transfrags with <code>expression < X</code>. The units of the expression cutoff value <code>X</code> correspond to the units specified by the <code>gtf-expr-attr</code> parameter, which is <code>FPKM</code> by default. Set
+                            to <code>0.0</code> to disable this filter.</p>
 
-        <p><strong><code>--gtf-expr-attr ATTR</code></strong> <code>(default=FPKM)</code></p>
-        <p>GTF attribute field containing expression estimate. The default setting is
-        <code>FPKM</code> for Cufflinks GTF input.</p>
+                        <p><strong><code>--isoform-frac FRAC</code></strong> <code>(default 0.05)</code></p>
+                        <p>Report transcript isoforms with <code>expression fraction >=FRAC</code> relative to the highest expressed gene. For each gene, the highest abundance isoform will be reported with a <code>FRAC</code> of <code>1.0</code>.</p>
 
-        <p><strong><code>--min-transfrag-length N</code></strong> <code>(default 200bp)</code></p>
-        <p>Pre-filters input transfrags with <code>length < N</code> prior to assembly.
-          Set to <code>0</code> to disable this filter.</p>
+                        <h3>Advanced Options</h3>
 
-        <p><strong><code>--min-expr X</code></strong> <code>(default 0.5)</code></p>
-        <p>Pre-filters input transfrags with <code>expression < X</code>.
-        The units of the expression cutoff value <code>X</code> correspond to the units
-        specified by the <code>gtf-expr-attr</code> parameter, which is <code>FPKM</code>
-        by default. Set to <code>0.0</code> to disable this filter.</p>
+                        <p id="manual-output">TACO has several advanced options that can be used to configure specific aspects of its behavior, such as change point detection and splicing pattern network construction. These parameters have been chosen to optimize performance for human
+                            transcriptomes. We recommend that users leave these options at their default settings.
+                        </p>
+                        <br>
+                        <h2 class="page-header">Output</h3>
+                    <p>TACO writes output to the directory specified by the
+                      <code>-o</code> command line option. Within this directory, the
+                      import output files are:
+                    </p>
 
-        <p><strong><code>--isoform-frac FRAC</code></strong> <code>(default 0.05)</code></p>
-        <p>Report transcript isoforms with <code>expression fraction >=FRAC</code> relative
-        to the highest expressed gene. For each gene, the highest abundance isoform
-        will be reported with a <code>FRAC</code> of <code>1.0</code>.</p>
+                    <h4><strong>Transcriptome assembly: <tt>assembly.gtf</tt></strong></h4>
+                    <p>This GTF file contains TACO's assembled isoforms. The first 7
+                      columns are standard GTF, and the last column contains attributes,
+                      some of which are also standardized (“gene_id”, and “transcript_id”).
+                      There one GTF record per row, and each record represents either a
+                      transcript or an exon within a transcript. The columns are defined as
+                      follows:</p>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th style="text-align: center">Column number</th>
+                          <th>Column name</th>
+                          <th>Example</th>
+                          <th>Description</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td style="text-align: center">1</td>
+                          <td>seqname</td>
+                          <td>chrX</td>
+                          <td>Chromosome or contig name</td>
+                        </tr>
+                        <tr>
+                          <td style="text-align: center">2</td>
+                          <td>source</td>
+                          <td>taco</td>
+                          <td>The name of the program that generated this file (always taco)</td>
+                        </tr>
+                        <tr>
+                          <td style="text-align: center">3</td>
+                          <td>feature</td>
+                          <td>exon</td>
+                          <td>The type of record (always either “transcript” or “exon”.</td>
+                        </tr>
+                        <tr>
+                          <td style="text-align: center">4</td>
+                          <td>start</td>
+                          <td>77696957</td>
+                          <td>The leftmost coordinate of this record (where 1 is the leftmost possible coordinate)</td>
+                        </tr>
+                        <tr>
+                          <td style="text-align: center">5</td>
+                          <td>end</td>
+                          <td>77712009</td>
+                          <td>The rightmost coordinate of this record, inclusive.</td>
+                        </tr>
+                        <tr>
+                          <td style="text-align: center">6</td>
+                          <td>score</td>
+                          <td>77712009</td>
+                          <td>The most abundant isoform for each gene is assigned a score
+                            of 1000. Minor isoforms are scored by the ratio
+                            (minor FPKM/major FPKM)</td>
+                        </tr>
+                        <tr>
+                          <td style="text-align: center">7</td>
+                          <td>strand</td>
+                          <td>+</td>
+                          <td>TACO's guess for which strand the isoform came from.
+                            Always one of “+”, “-“, “.”</td>
+                        </tr>
+                        <tr>
+                          <td style="text-align: center">7</td>
+                          <td>frame</td>
+                          <td>.</td>
+                          <td>TACO does not predict where the start and stop
+                            codons (if any) are located within each transcript,
+                            so this field is not used.</td>
+                        </tr>
+                        <tr>
+                          <td style="text-align: center">8</td>
+                          <td>attributes</td>
+                          <td>…</td>
+                          <td>See below.</td>
+                        </tr>
+                      </tbody>
+                    </table>
 
-        <h3>Advanced Options</h3>
+                    <p>Each GTF record is decorated with the following attributes:</p>
 
-        <p id="manual-output">TACO has several advanced options that can be used to
-          configure specific aspects of its behavior, such as change point
-          detection and splicing pattern network construction. These parameters
-          have been chosen to optimize performance for human transcriptomes.
-          We recommend that users leave these options at their default settings.
-        </p>
-        <br >
-        <h2>Output</h3>
-        <p>TACO writes output to the directory specified by the
-          <code>-o</code> command line option. Within this directory, the
-          import output files are:
-        </p>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th style="text-align: left">Attribute</th>
+                          <th>Example</th>
+                          <th>Description</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td style="text-align: left">gene_id</td>
+                          <td>G7</td>
+                          <td>TACO gene id</td>
+                        </tr>
+                        <tr>
+                          <td style="text-align: left">transcript_id</td>
+                          <td>TU56</td>
+                          <td>TACO transcript id</td>
+                        </tr>
+                        <tr>
+                          <td style="text-align: left">locus_id</td>
+                          <td>L1</td>
+                          <td>TACO locus id</td>
+                        </tr>
+                        <tr>
+                          <td style="text-align: left">tss_id</td>
+                          <td>TSS31</td>
+                          <td>TACO transcription start site id</td>
+                        </tr>
+                        <tr>
+                          <td style="text-align: left">expr</td>
+                          <td>2.441</td>
+                          <td>Isoform-level abundance. The units correspond to the
+                            expression units of the input transfrags (usually FPKM or TPM)
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="text-align: left">rel_frac</td>
+                          <td>0.7647</td>
+                          <td>Relative abundance of isoform compared to the major isoform
+                            in the gene. The most abundant isoform for each gene is
+                            assigned a rel_frac of 1.0. Minor isoforms are scored
+                            by the ratio (minor expr/major expr)
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="text-align: left">abs_frac</td>
+                          <td>0.7647</td>
+                          <td>Relative abundance of isoform compared to the total
+                            expression of all isoforms in the gene. Isoforms are scored by
+                            the ratio (expr / sum(expr(x) for each isoform x)).
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
 
-        <h4><strong>Transcriptome assembly: <tt>assembly.gtf</tt></strong></h4>
-        <p>This GTF file contains TACO's assembled isoforms. The first 7
-          columns are standard GTF, and the last column contains attributes,
-          some of which are also standardized (“gene_id”, and “transcript_id”).
-          There one GTF record per row, and each record represents either a
-          transcript or an exon within a transcript. The columns are defined as
-          follows:</p>
-        <table class="table">
-          <thead>
-            <tr>
-              <th style="text-align: center">Column number</th>
-              <th>Column name</th>
-              <th>Example</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style="text-align: center">1</td>
-              <td>seqname</td>
-              <td>chrX</td>
-              <td>Chromosome or contig name</td>
-            </tr>
-            <tr>
-              <td style="text-align: center">2</td>
-              <td>source</td>
-              <td>taco</td>
-              <td>The name of the program that generated this file (always taco)</td>
-            </tr>
-            <tr>
-              <td style="text-align: center">3</td>
-              <td>feature</td>
-              <td>exon</td>
-              <td>The type of record (always either “transcript” or “exon”.</td>
-            </tr>
-            <tr>
-              <td style="text-align: center">4</td>
-              <td>start</td>
-              <td>77696957</td>
-              <td>The leftmost coordinate of this record (where 1 is the leftmost possible coordinate)</td>
-            </tr>
-            <tr>
-              <td style="text-align: center">5</td>
-              <td>end</td>
-              <td>77712009</td>
-              <td>The rightmost coordinate of this record, inclusive.</td>
-            </tr>
-            <tr>
-              <td style="text-align: center">6</td>
-              <td>score</td>
-              <td>77712009</td>
-              <td>The most abundant isoform for each gene is assigned a score
-                of 1000. Minor isoforms are scored by the ratio
-                (minor FPKM/major FPKM)</td>
-            </tr>
-            <tr>
-              <td style="text-align: center">7</td>
-              <td>strand</td>
-              <td>+</td>
-              <td>TACO's guess for which strand the isoform came from.
-                Always one of “+”, “-“, “.”</td>
-            </tr>
-            <tr>
-              <td style="text-align: center">7</td>
-              <td>frame</td>
-              <td>.</td>
-              <td>TACO does not predict where the start and stop
-                codons (if any) are located within each transcript,
-                so this field is not used.</td>
-            </tr>
-            <tr>
-              <td style="text-align: center">8</td>
-              <td>attributes</td>
-              <td>…</td>
-              <td>See below.</td>
-            </tr>
-          </tbody>
-        </table>
+                    <h4><strong>Transcriptome assembly: <tt>assembly.bed</tt></strong></h4>
+                    <p>This BED file contains TACO's assembled isoforms. Please refer to
+                      the <a href="https://genome.ucsc.edu/FAQ/FAQformat.html#format1">
+                      UCSC genome browser's detailed description of the BED
+                      format</a>. The <code>name</code> column (Column 4) contains
+                      a string of the format <code>gene_id|transcript_id(expr)</code>,
+                      e.g. <code>G7|TU56(2.77)</code>.
+                    </p>
 
-        <p>Each GTF record is decorated with the following attributes:</p>
+                    <br/>
+                    <h4><strong>Transfrag coverage profiles:
+                      <tt>expr.pos.bedgraph</tt>,
+                      <tt>expr.neg.bedgraph</tt>,
+                      <tt>expr.none.bedgraph</tt></strong></h4>
+                    <p>TACO outputs 3 bedGraph files with the coverage profile of the
+                      input transfrags on the forward, reverse, and unknown/unspecified
+                      strands. Please refer to the
+                      <a href="https://genome.ucsc.edu/goldenPath/help/bedgraph.html">
+                      UCSC genome browser's detailed description of the bedGraph
+                      format</a>. These files can be converted to
+                      <a href="https://genome.ucsc.edu/goldenPath/help/bigWig.html">bigWig format</a>
+                      using the free conversion tool <code>bedGraphToBigWig</code> for
+                      viewing on genome browsers such as IGV or UCSC.
+                    </p>
 
-        <table class="table">
-          <thead>
-            <tr>
-              <th style="text-align: left">Attribute</th>
-              <th>Example</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style="text-align: left">gene_id</td>
-              <td>G7</td>
-              <td>TACO gene id</td>
-            </tr>
-            <tr>
-              <td style="text-align: left">transcript_id</td>
-              <td>TU56</td>
-              <td>TACO transcript id</td>
-            </tr>
-            <tr>
-              <td style="text-align: left">locus_id</td>
-              <td>L1</td>
-              <td>TACO locus id</td>
-            </tr>
-            <tr>
-              <td style="text-align: left">tss_id</td>
-              <td>TSS31</td>
-              <td>TACO transcription start site id</td>
-            </tr>
-            <tr>
-              <td style="text-align: left">expr</td>
-              <td>2.441</td>
-              <td>Isoform-level abundance. The units correspond to the
-                expression units of the input transfrags (usually FPKM or TPM)
-              </td>
-            </tr>
-            <tr>
-              <td style="text-align: left">rel_frac</td>
-              <td>0.7647</td>
-              <td>Relative abundance of isoform compared to the major isoform
-                in the gene. The most abundant isoform for each gene is
-                assigned a rel_frac of 1.0. Minor isoforms are scored
-                by the ratio (minor expr/major expr)
-              </td>
-            </tr>
-            <tr>
-              <td style="text-align: left">abs_frac</td>
-              <td>0.7647</td>
-              <td>Relative abundance of isoform compared to the total
-                expression of all isoforms in the gene. Isoforms are scored by
-                the ratio (expr / sum(expr(x) for each isoform x)).
-              </td>
-            </tr>
-          </tbody>
-        </table>
+                    <br/>
+                    <h4><strong>Transfrag splice junction profiles:
+                      <tt>splice_junctions.bed</tt></strong></h4>
+                    <p>A <a href="http://genome.ucsc.edu/FAQ/FAQformat.html#format1">UCSC
+                    BED</a> track of junctions reported by TACO.  Each junction consists
+                    of two connected BED blocks.  The score is the sum of the expression
+                    values of transfrags supporting the junction. This file can be converted
+                    to <a href="https://genome.ucsc.edu/goldenpath/help/bigBed.html">bigBed</a>
+                    track format for viewing on genome browsers such as IGV or UCSC.
+                    </p>
+            				</div>
+            				<div class="tab-pane" id="2">
+                        <br>
+                        <p>This tool can take any assembly in GTF format and compare to a reference,
+                          and provide details on overlap with reference transcripts,
+                          nature of that overlap, and can also run the CPAT tool to determine coding potential.
+                        </p>
+                          <p>We recommend using the GENCODE reference, which can be found
+                              <a href="#code" class="goto">here</a>.
+                          </p>
+                          <p>Run reference comparison tool as follows: </p>
+                          <pre>$ ./taco_ref_comp -o &lt;output_directory&gt; -r &lt;reference_gtf&gt; -t &lt;test_gtf&gt; --cpat (optional flag to run coding potential prediction)
+                      </pre>
 
-        <h4><strong>Transcriptome assembly: <tt>assembly.bed</tt></strong></h4>
-        <p>This BED file contains TACO's assembled isoforms. Please refer to
-          the <a href="https://genome.ucsc.edu/FAQ/FAQformat.html#format1">
-          UCSC genome browser's detailed description of the BED
-          format</a>. The <code>name</code> column (Column 4) contains
-          a string of the format <code>gene_id|transcript_id(expr)</code>,
-          e.g. <code>G7|TU56(2.77)</code>.
-        </p>
+                      <h3>General Options</h3>
 
-        <br/>
-        <h4><strong>Transfrag coverage profiles:
-          <tt>expr.pos.bedgraph</tt>,
-          <tt>expr.neg.bedgraph</tt>,
-          <tt>expr.none.bedgraph</tt></strong></h4>
-        <p>TACO outputs 3 bedGraph files with the coverage profile of the
-          input transfrags on the forward, reverse, and unknown/unspecified
-          strands. Please refer to the
-          <a href="https://genome.ucsc.edu/goldenPath/help/bedgraph.html">
-          UCSC genome browser's detailed description of the bedGraph
-          format</a>. These files can be converted to
-          <a href="https://genome.ucsc.edu/goldenPath/help/bigWig.html">bigWig format</a>
-          using the free conversion tool <code>bedGraphToBigWig</code> for
-          viewing on genome browsers such as IGV or UCSC.
-        </p>
+                      <p><strong><code>-h/--help</code></strong></p>
+                      <p>Prints the help message and exits</p>
 
-        <br/>
-        <h4><strong>Transfrag splice junction profiles:
-          <tt>splice_junctions.bed</tt></strong></h4>
-        <p>A <a href="http://genome.ucsc.edu/FAQ/FAQformat.html#format1">UCSC
-        BED</a> track of junctions reported by TACO.  Each junction consists
-        of two connected BED blocks.  The score is the sum of the expression
-        values of transfrags supporting the junction. This file can be converted
-        to <a href="https://genome.ucsc.edu/goldenpath/help/bigBed.html">bigBed</a>
-        track format for viewing on genome browsers such as IGV or UCSC.
-        </p>
-        <br id="manual-refcomp">
-        <br>
-        <h2>Reference Comparison Tools (Linux Only)</h2>
-        <p>This tool can take any assembly in GTF format and compare to a reference,
-          and provide details on overlap with reference transcripts,
-           nature of that overlap, and can also run the CPAT tool to determine
-           coding potential.
-        </p>
-        <p>We recommend using the GENCODE reference, which can be found
-          <a href="ftp://ftp.sanger.ac.uk/pub/gencode/Gencode_human/release_25/gencode.v25.annotation.gtf.gz">here</a>.
-        </p>
-        <p><strong>Note:</strong> If <strong><code>--cpat</code></strong> flag is used,
-        CPAT(v1.2.2) will be run. Please cite the CPAT tool (<a href="http://nar.oxfordjournals.org/content/41/6/e74.short">reference</a>).
-        <br>
-        <p>Run reference comparison tool as follows: </p>
-        <pre>$ ./taco_ref_comp -o &lt;output_directory&gt; -r &lt;reference_gtf&gt; -t &lt;test_gtf&gt; --cpat (optional flag to run coding potential prediction)
-        </pre>
+                      <p><strong><code>-v/--verbose</code></strong></p>
+                      <p>Enables detailed logging for debugging purposes</p>
 
-      </section>
+                      <p><strong><code>-p/--num-processes N</code></strong> <code>(default=1)</code></p>
+                      <p>Run TACO-refcomp in parallel mode with N processes.
+                        Note that parallelization done at chromosome level.</p>
 
-      <section id="faq">
-        <h2 class="page-header">FAQ</h2>
+                      <p><strong><code>-r REF</code></strong></p>
+                      <p>Path to reference gtf to be used in comparison."</p>
 
-        <br/><p class="lead"><strong>Q.</strong>
-        How much memory does TACO require?</p>
+                      <p><strong><code>-t TEST</code></strong></p>
+                      <p>Path to gtf being tested (e.g., a TACO produced meta-assembly)."</p>
 
-        <p><strong>A.</strong>
-        TACO memory usage scales with the size of the input and the number of
-        parallel processes. Specifically, TACO partitions the input transfrags
-        into independent loci, and transfrags within each loci are stored in
-        memory. Running TACO with multiple processes allows it to assemble
-        multiple loci in parallel at the expense of additional memory overhead.
+                      <p><strong><code>-o/--output-dir DIR</code></strong></p>
+                      <p>Directory where output files will be stored.</p>
 
-        To examine peak memory usage, we tested TACO on >10,000 datsets.
-        Some of the largest loci contained over 10 million transfrags each,
-        and memory per process ranged from 3-10GB.
-        </p>
+                      <p><strong><code>--cpat</code></strong> <code>(default=false)</code></p>
+                      <p>Run CPAT tool for coding potential scoring. CPAT function
+                        only supported for human, mouse, and zebrafish. The CPAT tool
+                        can take over an hour depending on the size of the transcriptome
+                        being analyzed.</p>
 
-        <br/><p class="lead"><strong>Q.</strong>
-        How much time does TACO take to run?</p>
+                      <p><strong><code>--cpat-species (human, mouse, zebrafish)</code></strong> <code>(default=human)</code></p>
+                      <p>Only needed if using <code>--cpat</code> flag.
+                        Species information needed to use approrpriate reference for CPAT algorithm</p>
 
-        <p><strong>A.</strong>
-        TACO runtime also scales with the size of the input and the number of
-        parallel processes. We can offer several examples:
-        1) TACO processed 55 breast cancer cell line datasets using a Mac OSX
-        laptop computer with 4 cores in about 10 minutes, and 2)
-        TACO processed ~1000 datasets from the CCLE on a 64-core Linux
-        workstation in about 2 hours and 30 minutes.
-        </p>
+                      <p><strong><code>--cpat-genome GENOME</code></strong></p>
+                      <p>Only needed if using <code>--cpat</code> flag.
+                        Path to genome fasta file (<code>GENOME</code>) that CPAT utilizes to generate sequence
+                      from assembly. (Genome must be same as that used to generate assemblies)</p>
+                      <div class="alert alert-warning">
+                      <p><strong>Note:</strong> If <strong><code>--cpat</code></strong>
+                        flag is used, CPAT(v1.2.2) will be run. Please cite the CPAT tool
+                        (<a href="http://nar.oxfordjournals.org/content/41/6/e74.short">reference</a>).
+                      <br></p>
+                    </div>
+                    </div>
+            			</div>
+              </div>
 
-        <br/><p class="lead"><strong>Q.</strong>
-        Why do I receive a WARNING message that my <code>sort</code>
-        command does not support the <code>--parallel</code> flag?</p>
 
-        <p><strong>A.</strong>
-        TACO uses the operating system's command line <code>sort</code> to
-        concatenate and sort the input GTF files before beginning assembly. For large
-        jobs (~1000 samples), sorting the GTF can consume a significant
-        portion of total runtime. Newer versions of GNU coreutils provide a
-        parallelized version of sort. TACO checks to see if sort can be
-        parallelized and defaults to single-threaded sort if this is not
-        supported.
-        </p>
 
-      </section>
 
-      <section id="contact">
-        <h2 class="page-header">Contact</h2>
-        <p>
-          Please send any questions/comments regarding tool to <code>yniknafs@med.umich.edu</code>.
-        </p>
-      </section>
 
-      <section id="datasets">
-        <h2 class="page-header">Transcriptome Assemblies</h2>
-        <p>
-          Cufflinks <em>ab initio</em> assemblies of the RNA-Seq datasets from
-          the Cancer Cell Line Encyclopedia (CCLE) are provided for user
-          download. RNA-Seq data were aligned using
-          <a href="https://github.com/alexdobin/STAR">STAR</a>
-          prior to running Cufflinks.
-        </p>
-        <ul>
-          <li><a href="#datasets-batches">Batches</a></li>
-          <li><a href="#datasets-individual">Individual assemblies</a></li>
-          <li><a href="#datasets-references">References</a></li>
-        </ul>
+        </section>
 
-        <h3 id="datasets-batches" class="page-header">Batches</h3>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Dataset</th>
-              <th>Samples</th>
-              <th>Size (Uncompressed)</th>
-              <th>Download Link</th>
-            </tr>
-          </thead>
-          <tr>
-              <td>CCLE Breast Cancer Cell Lines</td>
-              <td>55</td>
-              <td>285MB (4GB)</td>
-              <td><a href="http://mctp-taco.path.med.umich.edu/ccle_brca_cufflinks.tar.gz">ccle_brca_cufflinks.tar.gz</a></td>
-          </tr>
-          <tr>
-              <td>CCLE All Cell Lines</td>
-              <td>935</td>
-              <td>4.4GB (80GB)</td>
-              <td><a href="http://mctp-taco.path.med.umich.edu/ccle_cufflinks.tar.gz">ccle_cufflinks.tar.gz</a></td>
-          </tr>
-          <tr>
-              <td>GTEX Tissue</td>
-              <td>51</td>
-              <td>273MB (5GB)</td>
-              <td><a href="http://mctp-taco.path.med.umich.edu/gtex_tissue.tar.gz">gtex_tissue.tar.gz</a></td>
-          </tr>
-          <tr>
-              <td>GTEX Brain</td>
-              <td>50</td>
-              <td>238MB (5GB)</td>
-              <td><a href="http://mctp-taco.path.med.umich.edu/gtex_brain.tar.gz">gtex_brain.tar.gz</a></td>
-          </tr>
-        </table>
+        <section id="faq">
+            <h2 class="page-header">FAQ</h2>
 
-        <h4>Run instructions</h4>
-        <p>
-          First, untar/uncompress the downloaded dataset file:
-        </p>
-        <pre>tar -zxvf ccle_cufflinks.tar.gz</pre>
-        <p>
-          Files will uncompress into a directory e.g. <code>ccle_cufflinks</code>.
-          Within this directory is the file <code>list_of_files.txt</code> which
-          is a list relative paths to the GTF files.
-        </p>
-        <p>
-          Change your directory to uncompressed directory:
-        </p>
-        <pre>cd ccle_cufflinks</pre>
-        <p>
-          Run TACO with the following command:
-        </p>
-        <pre>./taco --gtf-expr-attr FPKM -o my_output_dir list_of_files.txt</pre>
+            <br/>
+            <p class="lead"><strong>Q.</strong> Can you compare a TACO generated assembly to an annotated reference??</p>
 
-        <h3 id="datasets-individual" class="page-header">Individual assemblies</h3>
-        <table id="ccle_files_table" class="display" cellspacing="0" width="100%">
-        </table>
+            <p><strong>A.</strong> We provide a reference comparison tool (<code>taco_refcomp</code>) that can be found bundled
+              with the <code>taco</code> tool. This tool can be used to compare any transcriptome to a reference. The tool also
+              supports running the CPAT coding potential tool. If CPAT is used, please cite the
+              <a href="http://nar.oxfordjournals.org/content/41/6/e74.short">CPAT manuscript</a>.
+            </p>
 
-        <h3 id="datasets-references" class="page-header">References</h3>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Dataset</th>
-              <th>Reference</th>
-              <th>Download Link</th>
-            </tr>
-          </thead>
-          <tr>
-              <td>Tissue - PacBio</td>
-              <td><a href="http://www.nature.com/nbt/journal/v31/n11/abs/nbt.2705.html">Sharon et al., 2013</a></td>
-              <td><a href="http://mctp-taco.path.med.umich.edu/tissue.pacbio.GRCh38.reference.gtf.tar.gz">tissue.pacbio.GRCh38.reference.gtf.tar.gz</a></td>
-          </tr>
-          <tr>
-              <td>Brain - SRL-RNA-seq</td>
-              <td><a href="http://www.nature.com/nbt/journal/v33/n7/abs/nbt.3242.html">Tilgner et al., 2015</a></td>
-              <td><a href="http://mctp-taco.path.med.umich.edu/brain.slr.GRCh38.reference.gtf.tar.gz">brain.slr.GRCh38.reference.gtf.tar.gz</a></td>
-          </tr>
-        </table>
+            <br/>
+            <p class="lead"><strong>Q.</strong> How much memory does TACO require?</p>
 
-      </section>
+            <p><strong>A.</strong> TACO memory usage scales with the size of the input and the number of parallel processes. Specifically, TACO partitions the input transfrags into independent loci, and transfrags within each loci are stored in memory. Running
+                TACO with multiple processes allows it to assemble multiple loci in parallel at the expense of additional memory overhead. To examine peak memory usage, we tested TACO on >10,000 datsets. Some of the largest loci contained over 10 million
+                transfrags each, and memory per process ranged from 3-10GB.
+            </p>
 
-      <section id="license">
-        <h2 class="page-header">License</h2>
-        <pre>
+            <br/>
+            <p class="lead"><strong>Q.</strong> How much time does TACO take to run?</p>
+
+            <p><strong>A.</strong> TACO runtime also scales with the size of the input and the number of parallel processes. We can offer several examples: 1) TACO processed 55 breast cancer cell line datasets using a Mac OSX laptop computer with 4 cores
+                in about 10 minutes, and 2) TACO processed ~1000 datasets from the CCLE on a 64-core Linux workstation in about 2 hours and 30 minutes.
+            </p>
+
+            <br/>
+            <p class="lead"><strong>Q.</strong> Why do I receive a WARNING message that my <code>sort</code> command does not support the <code>--parallel</code> flag?</p>
+
+            <p><strong>A.</strong> TACO uses the operating system's command line <code>sort</code> to concatenate and sort the input GTF files before beginning assembly. For large jobs (~1000 samples), sorting the GTF can consume a significant portion of
+                total runtime. Newer versions of GNU coreutils provide a parallelized version of sort. TACO checks to see if sort can be parallelized and defaults to single-threaded sort if this is not supported.
+            </p>
+
+        </section>
+
+        <section id="contact">
+            <h2 class="page-header">Contact</h2>
+            <p>
+                Please send any questions/comments regarding tool to <code>yniknafs@med.umich.edu</code>.
+            </p>
+        </section>
+
+        <section id="citation">
+            <br>
+            <p>
+                If using TACO, please cite <a href=http://www.nature.com/nmeth/journal/v14/n1/full/nmeth.4078.html>Niknafs et al., Nature Methods, 2017</a>.
+                <pre>
+Niknafs, Y. S., Pandian, B., Iyer, H. K., Chinnaiyan, A. M., &amp Iyer, M. K. (2017).
+TACO produces robust multisample transcriptome assemblies from RNA-seq. Nat Meth, 14(1), 68–70.
+              </pre>
+            </p>
+        </section>
+
+        <section id="datasets">
+            <h2 class="page-header">Transcriptome Assemblies</h2>
+            <p>
+                Cufflinks <em>ab initio</em> assemblies of the RNA-Seq datasets from the Cancer Cell Line Encyclopedia (CCLE) are provided for user download. RNA-Seq data were aligned using
+                <a href="https://github.com/alexdobin/STAR">STAR</a> prior to running Cufflinks.
+            </p>
+
+            <h3 id="datasets-batches" class="page-header">Batches</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Dataset</th>
+                        <th>Samples</th>
+                        <th>Size (Uncompressed)</th>
+                        <th>Download Link</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>CCLE Breast Cancer Cell Lines</td>
+                    <td>55</td>
+                    <td>285MB (4GB)</td>
+                    <td><a href="http://mctp-taco.path.med.umich.edu/ccle_brca_cufflinks.tar.gz">ccle_brca_cufflinks.tar.gz</a></td>
+                </tr>
+                <tr>
+                    <td>CCLE All Cell Lines</td>
+                    <td>935</td>
+                    <td>4.4GB (80GB)</td>
+                    <td><a href="http://mctp-taco.path.med.umich.edu/ccle_cufflinks.tar.gz">ccle_cufflinks.tar.gz</a></td>
+                </tr>
+                <tr>
+                    <td>GTEX Tissue</td>
+                    <td>51</td>
+                    <td>273MB (5GB)</td>
+                    <td><a href="http://mctp-taco.path.med.umich.edu/gtex_tissue.tar.gz">gtex_tissue.tar.gz</a></td>
+                </tr>
+                <tr>
+                    <td>GTEX Brain</td>
+                    <td>50</td>
+                    <td>238MB (5GB)</td>
+                    <td><a href="http://mctp-taco.path.med.umich.edu/gtex_brain.tar.gz">gtex_brain.tar.gz</a></td>
+                </tr>
+            </table>
+
+            <h4>Run instructions</h4>
+            <p>
+                First, untar/uncompress the downloaded dataset file:
+            </p>
+            <pre>tar -zxvf ccle_cufflinks.tar.gz</pre>
+            <p>
+                Files will uncompress into a directory e.g. <code>ccle_cufflinks</code>. Within this directory is the file <code>list_of_files.txt</code> which is a list relative paths to the GTF files.
+            </p>
+            <p>
+                Change your directory to uncompressed directory:
+            </p>
+            <pre>cd ccle_cufflinks</pre>
+            <p>
+                Run TACO with the following command:
+            </p>
+            <pre>./taco --gtf-expr-attr FPKM -o my_output_dir list_of_files.txt</pre>
+
+            <h3 id="datasets-individual" class="page-header">Individual assemblies</h3>
+            <table id="ccle_files_table" class="display" cellspacing="0" width="100%">
+            </table>
+
+            <h3 id="datasets-references" class="page-header">References</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Dataset</th>
+                        <th>Reference</th>
+                        <th>Download Link</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>Tissue - PacBio</td>
+                    <td><a href="http://www.nature.com/nbt/journal/v31/n11/abs/nbt.2705.html">Sharon et al., 2013</a></td>
+                    <td><a href="http://mctp-taco.path.med.umich.edu/tissue.pacbio.GRCh38.reference.gtf.tar.gz">tissue.pacbio.GRCh38.reference.gtf.tar.gz</a></td>
+                </tr>
+                <tr>
+                    <td>Brain - SRL-RNA-seq</td>
+                    <td><a href="http://www.nature.com/nbt/journal/v33/n7/abs/nbt.3242.html">Tilgner et al., 2015</a></td>
+                    <td><a href="http://mctp-taco.path.med.umich.edu/brain.slr.GRCh38.reference.gtf.tar.gz">brain.slr.GRCh38.reference.gtf.tar.gz</a></td>
+                </tr>
+            </table>
+
+        </section>
+
+        <section id="license">
+            <h2 class="page-header">License</h2>
+            <pre>
 Copyright (c) 2015-2016 Matthew Iyer, Yashar Niknafs, Balaji Pandian,
 Chinnaiyan Lab, University of Michigan Medical School.
 
@@ -873,14 +883,14 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
         </pre>
-      </section>
+        </section>
 
-      <div class="row text-center">
-        <p><small>&copy; 2015 Michigan Center for Translational Pathology, University of Michigan Health System</small>
-      </div>
+        <div class="row text-center">
+            <p><small>&copy; 2015 Michigan Center for Translational Pathology, University of Michigan Health System</small>
+        </div>
 
     </div>
 
-  </body>
+</body>
 
 </html>
