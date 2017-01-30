@@ -68,7 +68,18 @@
 
         $(document).ready(function() {
             clear_all_pages();
-            $("#overview").show();
+
+            // check if start page GET variable is set and re-navigate
+            var name = 'start_page'.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
+            var results = regex.exec(window.location.href);
+            if (results != null) {
+                $("#" + results[2]).show();
+            } else {
+                $("#overview").show();
+            }
+
+
             $(".goto").click(function() {
                 var target = $(this).attr("href");
                 target = target.substring(1, target.length);
