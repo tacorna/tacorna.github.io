@@ -68,18 +68,7 @@
 
         $(document).ready(function() {
             clear_all_pages();
-
-            // check if start page GET variable is set and re-navigate
-            var name = 'start_page'.replace(/[\[\]]/g, "\\$&");
-            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
-            var results = regex.exec(window.location.href);
-            if (results != null) {
-                $("#" + results[2]).show();
-            } else {
-                $("#overview").show();
-            }
-
-
+            $("#overview").show();
             $(".goto").click(function() {
                 var target = $(this).attr("href");
                 target = target.substring(1, target.length);
@@ -261,16 +250,6 @@
                     </tr>
                 </thead>
                 <tr>
-                    <td>v0.6.2</td>
-                    <td>1/31/2017</td>
-                    <td>Refcomp Optimized</td>
-                    <td>
-                        <a href="https://github.com/tacorna/taco/releases/download/v0.6.2/taco-v0.6.2.OSX_x86_64.tar" style="width: 33%; min-width: 30px; float: left;">Mac</a>
-                        <a href="https://github.com/tacorna/taco/releases/download/v0.6.2/taco-v0.6.2.Linux_x86_64.tar" style="width: 33%; min-width: 30px; float: left;">Linux</a>
-                    </td>
-                    <td><a href="https://github.com/tacorna/taco/archive/v0.6.2.tar.gz" style="width: 33%; float: left; min-width: 30px;">Source</a></td>
-                </tr>
-                <tr>
                     <td>v0.6.1</td>
                     <td>1/28/2017</td>
                     <td>Added Refcomp Source Code and Added Mac Support</td>
@@ -315,7 +294,8 @@
             <p>Instructions on testing the installation are <a href="#testinstall" class="goto">here</a>.</p>
             <span>&nbsp</span>
             <h2 class="page-header">Download References</h2>
-            <p>For your convenience we are providing links for human references.</p>
+            <p>For your convenience we are providing links for human references.
+            Be sure to gunzip the file before running with TACO or TACO-refcomp.</p>
             <ul>
                 <li><a href="http://mctp-taco.path.med.umich.edu/gencode.v25.annotation.gtf.gz">GENCODEv25 Human Transcriptome GTF</a></li>
                 <li><a href="http://mctp-taco.path.med.umich.edu/gencode.v25.metadata.transcript.tsv.gz">GENCODEv25 Human Transcriptome Metadata</a></li>
@@ -331,7 +311,7 @@
             <p>Unpack the downloaded binary package:
                 <pre>$ tar -xpvfz taco-&ltRELEASE&gt.tar.gz</pre> On some machines, it may be necessary to change the permissions of the executable
                 <pre>$ cd taco-&ltRELEASE&gt/
-      $ chmod +x taco_run</pre>
+      $ chmod +x taco</pre>
             </p>
 
             <p>To test installatoin, download the following two test data files and place them in the same directory as the TACO executable:</p>
@@ -341,7 +321,7 @@
             </ul>
 
             <p>In the directory where you placed the two downloaded files and unpacked the binary file, type:</p>
-            <pre>./taco_run --gtf-expr-attr expr taco_test_files.txt</pre>
+            <pre>./taco --gtf-expr-attr expr taco_test_files.txt</pre>
 
             <p><em>Note:
       Our sample dataset has already been processed by TACO, which converts
@@ -402,7 +382,7 @@
             </ul>
             <h4>Optional Dependencies<small> (to generate single file binaries): </small></h4>
             <ul>
-                <li><a href="http://www.pyinstaller.org/">PyInstaller 3.0+ (3.2.1+ recommended)</a></li>
+                <li><a href="http://www.pyinstaller.org/">PyInstaller 3.0+</a></li>
             </ul>
             <span>&nbsp</span>
 
@@ -448,7 +428,7 @@ $ python taco_refcomp.py -h
             			  <div class="tab-pane active" id="1">
                         <br>
                         <p>Run TACO from the command line as follows (from either the downloaded platform-specific binary or building from the source code):</p>
-                        <pre>$ ./taco_run &lt;options&gt; &lt;gtf_files.txt&gt;</pre>
+                        <pre>$ ./taco &lt;options&gt; &lt;gtf_files.txt&gt;</pre>
 
                         <h2 class="page-header">Arguments</h2>
                         <p>A detailed description of the parameters used to control TACO is below:</p>
@@ -685,7 +665,7 @@ $ python taco_refcomp.py -h
                               <a href="#code" class="goto">here</a>.
                           </p>
                           <p>Run reference comparison tool as follows: </p>
-                          <pre>$ ./taco_refcomp -o &lt;output_directory&gt; -r &lt;reference_gtf&gt; -t &lt;test_gtf&gt; --cpat (optional flag to run coding potential prediction)
+                          <pre>$ ./taco_ref_comp -o &lt;output_directory&gt; -r &lt;reference_gtf&gt; -t &lt;test_gtf&gt; --cpat (optional flag to run coding potential prediction)
                       </pre>
 
                       <h3>General Options</h3>
